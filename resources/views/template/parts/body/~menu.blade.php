@@ -4,7 +4,8 @@
     <li><a href="shop-index.html" target="_blank">Home</a></li>
     <li><a href="shop-index.html" target="_blank">Terms condition</a></li>
     <li><a href="shop-index.html" target="_blank">Reviews</a></li>
-    <li><a href="onepage-index.html" target="_blank">About&Contact</a></li>
+    <li><a href="onepage-index.html" target="_blank">About Us</a></li>
+    <li><a href="onepage-index.html" target="_blank">Contact Us</a></li>
 
   	@include('template.parts.body.~search-form')
 
