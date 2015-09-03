@@ -43,6 +43,8 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
+		return view('template/layout');
+
 		$articles = Article::with('author')->orderBy('position', 'DESC')->orderBy('created_at', 'DESC')->limit(4)->get();
 
 		$photoAlbums = PhotoAlbum::select(array(
