@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
-Route::get('home', 'HomeController@index');
-Route::get('about', 'PagesController@about');
+Route::get('/', 'HomeController@index'); 
+Route::get('home',['as' => 'home','uses' => 'HomeController@index']);
+Route::get('about',['as' => 'about','uses' => 'PagesController@about']);
 Route::get('contact', 'PagesController@contact');
 
 Route::pattern('id', '[0-9]+');

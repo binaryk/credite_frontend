@@ -29,6 +29,9 @@
             '_token' : token,
             async    : false
         });
+
+        $('#flash-overlay-modal').modal();
+        $('div.alert').not('.alert-danger').delay(3000).slideUp(300);
     });
 </script>
 @yield('custom-scripts')

@@ -9,12 +9,22 @@ class PagesController extends Controller {
 
 	public function welcome()
 	{
+		
+
 		return view('pages.welcome');
 	}
 
 	public function about()
 	{
-		return view('pages.about');
+		$breadcrumbs = [
+            [
+                'name' => 'About',
+                'url'  => "",
+                'ids' => ''
+            ]
+        ];
+
+		return view('pages.about')->with(compact('breadcrumbs'));
 	}
 
 	public function contact()

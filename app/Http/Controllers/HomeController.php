@@ -43,7 +43,7 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('template/layout');
+		return view('home');
 
 		$articles = Article::with('author')->orderBy('position', 'DESC')->orderBy('created_at', 'DESC')->limit(4)->get();
 
