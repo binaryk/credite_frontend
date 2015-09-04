@@ -1,7 +1,4 @@
 <ul class="breadcrumb">
-<li>
-	<a href="{{URL('/') }}">Home</a>  
-</li>
 	@if( isset($breadcrumbs) )
 		@foreach($breadcrumbs as $key => $breadcrumb)
 			<li>

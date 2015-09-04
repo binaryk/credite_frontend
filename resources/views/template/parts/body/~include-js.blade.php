@@ -12,6 +12,11 @@
 <!-- END RevolutionSlider -->
 
 <script src="{{asset('assets/frontend/layout/scripts/layout.js')}}" type="text/javascript"></script>
+
+
+<script src="{{ asset( 'components/angular/angular.min.js') }}" ></script> 
+
+
 <script type="text/javascript">
     jQuery(document).ready(function() {
         Layout.init();    

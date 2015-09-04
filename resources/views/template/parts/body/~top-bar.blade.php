@@ -13,10 +13,16 @@
             <!-- BEGIN TOP BAR MENU -->
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
-                    <li><a href="page-login.html">Log In</a></li>
-                    <li><a href="page-reg-page.html">Registration</a></li>
+            @if(!Auth::check())
+                    <li><a href="{{ url('auth/login') }}">Log In</a></li>
+                    <li><a href="{{ url('auth/register') }}">Registration</a></li>
+            @else
+                    <li><a href="{{ url('auth/login') }}">My page</a></li>
+                    <li><a href="{{ url('auth/logout') }}">Logout</a></li>
+            @endif
                 </ul>
             </div>
+
             <!-- END TOP BAR MENU -->
         </div>
     </div>        

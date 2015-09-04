@@ -1,4 +1,4 @@
-@extends('app')
+@extends('template.layout')
 
 {{-- Web site Title --}}
 @section('title') {{{ trans('site/user.login') }}} :: @parent @stop

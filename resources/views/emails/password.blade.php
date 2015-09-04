@@ -1,4 +1,4 @@
-@extends('app')
+@extends('template.layout')
 @section('content')
 	<h2>Password Reset</h2>
 

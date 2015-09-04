@@ -1,7 +1,7 @@
 <!-- BEGIN HEADER -->
 <div class="header">
   <div class="container">
-    <a class="site-logo" href="{{route('home')}}"><img src="{{ asset('assets/frontend/layout/img/logos/logo-corp-red.png') }}" alt="Metronic FrontEnd"></a>
+    <a class="site-logo" href="{{route('home')}}"><img width="500" src="{{ asset('assets/site/images/logo.png') }}" alt="norwichtransfer.cheap"></a>
 
     <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
   
