@@ -12,8 +12,8 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.less( 
-        [ 
-        "app.less" 
-        ], 'public/custom/css/app/app.css'); 
+	  mix.less([ 
+    	'app.less',
+    	'quick-booking.less'
+    	], 'public/custom/css/app');
 });

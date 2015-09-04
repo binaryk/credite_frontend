@@ -11,14 +11,15 @@
 <script src="{{asset('assets/frontend/pages/scripts/revo-slider-init.js')}}" type="text/javascript"></script>
 <!-- END RevolutionSlider -->
 
+<script src="{{asset('assets/global/scripts/metronic.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/frontend/layout/scripts/layout.js')}}" type="text/javascript"></script>
-
 
 <script src="{{ asset( 'components/angular/angular.min.js') }}" ></script> 
 
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
+        Metronic.init();
         Layout.init();    
         Layout.initOWL();
         RevosliderInit.initRevoSlider();
