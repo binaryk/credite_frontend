@@ -1,5 +1,5 @@
 <!DOCTYPE html> 
-<html lang="en" class="no-js" ng-app="app"> 
+<html lang="en" class="no-js"> 
 @include('template.parts.~head')
 <body class="corporate" @yield('body-attributes')>
     @include('template.parts.body.~top-bar')

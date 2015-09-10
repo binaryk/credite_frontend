@@ -41,6 +41,7 @@
   <link rel="stylesheet" id="style-color" href="{{ asset('assets/frontend/layout/css/themes/red.css') }}">  
   <link rel="stylesheet" href="{{ asset('assets/frontend/layout/css/custom.css') }}">
   <link rel="stylesheet" href="{{ asset('custom/css/app/app.css') }}">
+  <link rel="stylesheet" href="{{ asset('custom/css/app/angular-animate.css') }}">
   <!-- Theme styles END -->
   @yield('custom-styles')
 </head>

@@ -1,43 +1,44 @@
 @extends('template.layout')
 
 @section('custom-styles')
+<style type="text/css">
+  div[class*='up_point'],
+  div[class*='off_point']{
+    display: none;
+  }
+</style>
 @stop
 
 @section('slider')
 @stop
-{{--
+
 @section('body-attributes')
-  ng-controller = "BookingCtrl"
 @stop
---}}
+
 @section('content')
 
-
-    <div ng-view></div>
-
+    <div ui-view></div>
     
-    {{--@include('pages.parts.original-content')--}}
+    <div class="row">
+      <div class="col-md-3">
+        @include('pages.parts.quick-booking')
+      </div>
+      <div class="col-md-9" id="slider">
+        @include('template.parts.body.~page-slider')
+      </div>
+    </div>
 
 @stop
 
 @section('custom-scripts')
-  <script src="{{ asset( 'custom/js/angular/config.js') }}" ></script> 
-
-  
-  <script src="{{ asset( 'custom/js/angular/controllers/BookingCtrl.js') }}" ></script> 
-  <script src="{{ asset( 'custom/js/angular/controllers/IndexCtrl.js') }}" ></script> 
-  <script src="{{ asset( 'custom/js/angular/controllers/FormCtrl.js') }}" ></script> 
-
-
-
 
   <script src="{{ asset( 'custom/js/general/HomePage.js') }}" ></script> 
-  <script src="{{ asset( 'components/angular-route/angular-route.min.js') }}" ></script> 
 
 
   <script type="text/javascript">
     var _config = {
-      r_get_airports       : "{{route('r_get_airports')}}" 
+      r_get_airports       : "{{route('r_get_airports')}}" ,
+      r_get_form           : "{{ route('r_get_form') }} "
     }
 
     HomePage.init();

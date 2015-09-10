@@ -18,4 +18,8 @@ class Airport extends Model
 	private $rules = array(
 			'name' => 'required|min:2', 
 	); 
+
+	public static function toCombobox(){
+		return self::orderBy('name')->lists('name','id');
+	} 
 }

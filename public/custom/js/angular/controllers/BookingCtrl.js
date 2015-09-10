@@ -4,6 +4,7 @@ function BookingCtrl($scope, $http){
 	$scope.airports = [];
 	$scope.airport = {};
 	$scope.point_type = '';
+
 	$scope.point_types = [
 		{ id: '1', name:'Adress'},
 		{ id: '2', name:'Airport'},
@@ -24,7 +25,7 @@ function BookingCtrl($scope, $http){
 	});
 
 	$scope.changePoint = function(p){
-		var type = $scope.point_type = p;
+		var type = p;
 		console.log(type);
 		
 		switch(type) {
@@ -49,6 +50,17 @@ function BookingCtrl($scope, $http){
 		console.log(model);
 	}
 
+	$scope.getCommand = function(){
+		console.log('Get command');
+	}
+
+	$scope.isOdd = function ($value) {
+        return $value % 2;
+    };
+
+    $scope.submitBooking = function(){
+    	console.log('submit');
+    }
 	
 
 
@@ -60,35 +72,3 @@ app.run(function($rootScope){
 	$rootScope.config = _config;
 });
 app.controller('BookingCtrl', BookingCtrl);
-
-app.filter('propsFilter', function() {
-  return function(items, props) {
-    var out = [];
-
-    if (angular.isArray(items)) {
-      var keys = Object.keys(props);
-        
-      items.forEach(function(item) {
-        var itemMatches = false;
-
-        for (var i = 0; i < keys.length; i++) {
-          var prop = keys[i];
-          var text = props[prop].toLowerCase();
-          if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
-            itemMatches = true;
-            break;
-          }
-        }
-
-        if (itemMatches) {
-          out.push(item);
-        }
-      });
-    } else {
-      // Let the output be the input untouched
-      out = items;
-    }
-
-    return out;
-  };
-});

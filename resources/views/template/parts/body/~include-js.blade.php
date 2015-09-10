@@ -15,6 +15,7 @@
 <script src="{{asset('assets/frontend/layout/scripts/layout.js')}}" type="text/javascript"></script>
 
 <script src="{{ asset( 'components/angular/angular.min.js') }}" ></script> 
+<script src="{{ asset( 'components/angular-animate/angular-animate.min.js') }}" ></script> 
 
 
 <script type="text/javascript">
