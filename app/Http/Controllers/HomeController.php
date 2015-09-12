@@ -13,7 +13,8 @@ class HomeController extends Controller {
 
 	public function index()
 	{
-		// dd(basename(__FILE__));
+		dd('salut');
+		dd(basename(__FILE__));
 
 		$controls = $this->controls('up_');
 		$controls1 = $this->controls('off_');
