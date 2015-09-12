@@ -14,6 +14,7 @@ class HomeController extends Controller {
 	public function index()
 	{
 		dd('salut');
+		dd('salut');
 		dd(basename(__FILE__));
 
 		$controls = $this->controls('up_');
