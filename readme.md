@@ -1,4 +1,4 @@
-#Edi 55
+#Edi
 # Laravel Framework 5.1  Bootstrap 3 Starter Site
 
 Demo is here http://l5start.mrakodol.info/
