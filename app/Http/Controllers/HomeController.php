@@ -13,7 +13,7 @@ class HomeController extends Controller {
 
 	public function index()
 	{
-		dd('Noroc suka');
+		dd('Noroc suka 2');
 
 		// 
 
