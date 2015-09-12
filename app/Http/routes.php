@@ -24,5 +24,3 @@ Route::get('url-get-airports',['as' => 'r_get_airports', 'uses' => 'HomeControll
 include(app_path() . '/~Libs/routes/routes_booking_form.php');
 
 // un mesaj frumos
-// inca un mesaj
-// 
