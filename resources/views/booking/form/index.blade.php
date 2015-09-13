@@ -8,8 +8,7 @@
 <link rel="stylesheet" href="{{ asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}">
 
 <link rel="stylesheet" href="{{ asset('assets/global/css/plugins.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/global/css/components.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/global/css/plugins.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/global/css/components.css') }}"> 
 <link rel="stylesheet" href="{{ asset('assets/admin/layout/css/layout.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/admin/layout/css/custom.css') }}">
 
@@ -37,6 +36,7 @@
   <script>
   jQuery(document).ready(function($) {
     FormWizard.init();
+    $('.calendar').datepicker();
   });
   </script>
 @stop
