@@ -1,0 +1,180 @@
+#header, #sidebar, footer
+{
+	background-color:#3e5076 !important;
+}
+
+#main
+{
+	min-height: 621px;
+
+	.row:first-child
+	{
+		h1
+		{
+			margin-bottom:1px;
+		}
+	}
+
+	.panel
+	{
+		border-radius:0px;
+		border:1px solid #8fd300;
+		margin-bottom: 10px;
+		.title-two
+			{
+				background-color:#8fd300;
+			}
+		.panel-heading
+		{
+			border-radius:0px;
+			margin:0px;
+			padding:0px 0px 0px 15px;
+			border:none;
+			color:#fff;
+			font-size:18px;
+			.title-title
+			{
+				padding-top:6px;
+				padding-bottom:6px;
+				width:auto;
+				float:left;
+			}
+			.title-actions
+			{
+				padding:6px;
+				background-color:#f10359;
+				&:hover
+				{
+					opacity:0.5;
+				}
+			}
+		}
+
+		.panel-body
+		{
+			border-top:1px solid #8fd300;
+			padding: 8px;
+			.iblink-table
+			{
+				margin-bottom:0px;
+				td
+				{
+					background-color:#f7f7f7;
+					padding:2px !important;
+				}
+			}
+		}
+		
+	}
+
+	#breadcrumb
+	{
+		margin-top:0px;
+		color:#ccc;
+		margin-bottom:10px;
+		font-style:italic;
+		font-size:15px;
+		a
+		{
+			color:#8fd300;
+		}
+	}
+
+	.btn-iblink-pink
+	{
+		background-color:#f10359;
+		border-radius:0px;
+		color:#fff;
+		&:hover
+		{
+			opacity:0.5px;
+		}
+	}
+}
+
+td.table-cell-student-info
+{
+	padding:2px !important;	
+	.alert
+	{
+		padding:2px 4px;
+		margin-bottom:0px;
+		.panel
+		{
+			border:none !important;
+			.panel-heading
+			{
+				color:#000 !important;
+				text-align:center;
+				font-size:22px !important;
+				padding:4px 0px !important;
+			}
+		}
+	}
+}
+
+.student-infos, .student-add-grade, .student-add-absence, .student-send-message
+{
+	display:none;
+	background-color:#fff !important;
+	td
+	{
+		background-color:#fff !important;
+	}
+}
+
+.panel-student-info
+{
+	margin-top:20px;
+}
+.table-cell-note, .table-cell-absente
+{
+	font-size: 11px;
+	span.grade
+	{
+		font-size: 13px;
+		font-weight: bold;
+		color:#00f;
+		background-color:#ccc;
+		margin-top:1px;
+		margin-bottom:1px;
+	}
+}
+
+.show-add-absence
+{
+	cursor:pointer;
+}
+
+.absente-semestru
+{	
+	width:100%;
+	.semestru
+	{
+		border:1px solid #ccc;
+		>.row
+		{
+			div.title
+			{
+				color:#fff !important;
+				background-color:#8fd300 !important;
+				font-size:12px !important;
+				border-bottom:1px solid #ccc !important;
+			}
+		}
+		.absenta
+		{
+			border-radius:1px !important;
+			margin-top:1px;
+			margin-bottom:1px;
+			padding:2px 3px !important;
+		}
+	}
+}
+
+.medie
+{
+	border-radius:2px;
+	background-color:#8fd300 !important;
+	color:#fff;
+}

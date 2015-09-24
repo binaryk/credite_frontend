@@ -19,9 +19,17 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-6">
 				{!! $data['steps']['records']['up_date'] !!}
 			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="hour">Hour</label>
+					<input type="text" name="hour" value="2:30 PM" data-format="hh:mm A" class="form-control clockface_1"/>
+				</div>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-8">
 				<div class="col-md-4">
 					{!! $data['steps']['records']['nr_passegers'] !!}

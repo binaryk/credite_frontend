@@ -133,7 +133,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
 				->name('up_date')
 				->caption('Pick up date')
-				->class('form-control calendar data-source')->readonly(0)
+				->class('form-control calendar date-picker data-source')->readonly(0)
 				->controlsource( 'up_date')->controltype('textbox')
 				->addon(['before' => '<i class="fa fa-calendar"></i>', 'after' => NULL])
 				->out(),

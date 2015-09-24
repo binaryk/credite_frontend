@@ -1,0 +1,181 @@
+.dt-form-container
+{
+	display:none;
+
+	label
+	{
+		margin-bottom:1px;
+	}
+	
+	.box
+	{
+		margin-top:2px;
+		margin-bottom:4px;
+	}
+
+	
+
+	.box-footer
+	{
+		padding:4px 2px 4px 2px;
+	}
+
+	.box-header
+	{
+		h3
+		{
+			padding:2px 10px 2px 10px !important;
+		}
+		.box-tools
+		{
+			right:0px;
+			top:0px;
+			padding:0px 0px 0px 0px !important;
+		}
+	}
+
+	.box-body
+	{
+		padding-left:4px;
+		padding-right:4px;
+	}
+
+	.form-group
+	{
+		margin-bottom:4px;
+	}
+
+	.help-block
+	{
+		margin:1px 0px 1px 0px;
+		color:#f56954 !important;
+		font-size:12px;
+	}
+
+	label.error-sign, .has-error label, .has-error .input-group-addon i
+	{
+		color:#f56954 !important;
+	}
+
+	.has-error .form-control, .has-error .input-group-addon
+	{
+		border-color:#f56954 !important;
+	}
+
+	textarea
+	{
+		width:100%;
+		max-width:100%;
+		min-width:100%;
+	}
+
+	.input-group-addon
+	{
+		padding:2px 4px;
+	}
+
+	.input-group
+	{
+		input:disabled
+		{
+			background-color:#fff;
+		}
+	}
+}
+
+.modal
+{
+	textarea
+	{
+		width:100%;
+		max-width:100%;
+		min-width:100%;
+	}
+}
+
+.datepicker 
+{
+	border-radius:0px;
+	margin:0px;
+	.datepicker-days, .datepicker-months
+	{
+
+		td, th
+		{
+			border:1px solid #ccc;
+			font-size:12px;
+			height:initial;
+			border-radius:1px;
+			cursor:pointer;
+		}
+		td
+		{
+			text-align:right;
+			&:hover
+			{
+				background-color:#DDD;
+			}
+		}
+		td.old, td.new
+		{
+			background-color:#999;
+			color:#000;
+		}
+		td.disabled
+		{
+			text-decoration:line-through;
+		}
+		table.table
+		{
+			margin-bottom:0px;
+			thead
+			{
+				th.datepicker-switch, th.prev, th.next
+				{
+					text-align:center !important;
+				}
+			}
+			td
+			{
+				span
+				{
+					padding:0px 1px;
+					&:hover
+					{
+						background-color:#999;
+						color:#ddd;
+					}
+				}
+			}
+		}
+	}
+}
+
+.datepicker.dropdown-menu
+{
+	td, th
+	{
+		padding:2px !important;
+	}
+
+	.table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>th, .table>caption+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>td, .table>thead:first-child>tr:first-child>td
+	{
+		border-top:1px solid #ccc;
+	}
+}
+
+.btn-close-form
+{
+	background:transparent !important;
+}
+
+.bootstrap-duallistbox-container
+{
+	.buttons
+	{
+		.moveall, .move, .removeall, .remove
+		{
+			height:34px !important;
+		}
+	}
+}
