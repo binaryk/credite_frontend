@@ -1,6 +1,7 @@
 @extends('template.layout')
 
 @section('custom-styles')
+<link rel="stylesheet" href="{{ asset( 'assets/global/plugins/icheck/skins/all.css' ) }}">
 <link rel="stylesheet" href="{{ asset('assets/global/plugins/font-awesome/css/font-awesome.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/global/plugins/simple-line-icons/simple-line-icons.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/global/plugins/bootstrap/css/bootstrap.min.css') }}">
@@ -50,10 +51,34 @@
   <script src=" {{asset('assets/global/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js')}} "></script>
   <script src=" {{asset('assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')}} "></script>
   <script src=" {{asset('assets/admin/pages/scripts/components-pickers.js')}} "></script>
+  <script src=" {{asset('assets/admin/pages/scripts/form-icheck.js')}} "></script>
+  <script src=" {{asset('assets/global/plugins/icheck/icheck.min.js')}} "></script>
   <script>
   jQuery(document).ready(function($) {
     FormWizard.init();
-    ComponentsPickers.init();
+    ComponentsPickers.init(); 
+
+/*    if (!$().iCheck) {
+        return;
+    }
+
+    $('.icheck').each(function() {
+        var checkboxClass = $(this).attr('data-checkbox') ? $(this).attr('data-checkbox') : 'icheckbox_minimal-grey';
+        var radioClass = $(this).attr('data-radio') ? $(this).attr('data-radio') : 'iradio_minimal-grey';
+
+        if (checkboxClass.indexOf('_line') > -1 || radioClass.indexOf('_line') > -1) {
+            $(this).iCheck({
+                checkboxClass: checkboxClass,
+                radioClass: radioClass,
+                insert: '<div class="icheck_line-icon"></div>' + $(this).attr("data-label")
+            });
+        } else {
+            $(this).iCheck({
+                checkboxClass: checkboxClass,
+                radioClass: radioClass
+            });
+        }
+    });*/
   });
   </script>
 @stop

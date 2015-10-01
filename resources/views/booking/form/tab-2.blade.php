@@ -44,8 +44,12 @@
 		</div> 
 
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-8">
 				{!! $data['steps']['records']['details'] !!}
+			</div>
+			<div class="col-md-4">
+				{!! $data['steps']['records']['meet_and_greet'] !!}
+				{!! $data['steps']['records']['return_50'] !!}
 			</div>
 		</div>	
 </div>

@@ -37,18 +37,27 @@ class BookingController extends \App\Http\Controllers\Controller {
 	public function getBookingForm(){
 	} 
 
-	public function steps(){
+	public function destination($type = NULL, $destination = NULL){
+		$data['caption'] = 'BOOKING DETAILS FORM';
+		$quick = [];
+		$quick['from'] = '';
+		$quick['to'] = \Config::get($type)[$destination];
+		$data['steps'] = $this->steps($quick);
+		return view('booking.form.index')->with(compact('data'));
+	} 
+
+	public function steps($quick = NULL){
 	return $steps = [
-		'records' => $this->controls(),
+		'records' => $this->controls( (object) $quick),
 		'tabs' => [
 			[
-				'caption' => 'Journey details',
-				'help'    => 'Provide journey details',
+				'caption' => 'Details',
+				'help'    => 'Provide details',
 				'view'    => '1',
 			],
 			[
-				'caption' => 'Your details',
-				'help'    => 'Provide your details',
+				'caption' => 'Pickup date/time',
+				'help'    => 'Provide pickup date/time',
 				'view'    => '2'
 			],
 			[
@@ -62,7 +71,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 	}
 
 
-	public function controls($model = NULL){
+	public function controls($quick = NULL, $model = NULL){
 
 		return [
 			'email' =>	
@@ -82,24 +91,38 @@ class BookingController extends \App\Http\Controllers\Controller {
 			      ->out(),
 			'phone' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-			      ->name('phone')->caption('Phone')
+			      ->name('phone')->caption('Mobile phone')
 			      ->class('form-control data-source')
 			      ->controlsource('phone')->controltype('textbox')
-			      ->value($model != NULL ? $model->name : '')
+			      ->value($model != NULL ? $model->phone : '')
+			      ->out(),
+			'flight_nr' =>	
+				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
+			      ->name('flight_nr')->caption('Flight Nr')
+			      ->class('form-control data-source')
+			      ->controlsource('flight_nr')->controltype('textbox')
+			      ->value($model != NULL ? $model->flight_nr : '')
+			      ->out(),
+			'coming_from' =>	
+				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
+			      ->name('coming_from')->caption('Coming from')
+			      ->class('form-control data-source')
+			      ->controlsource('coming_from')->controltype('textbox')
+			      ->value($model != NULL ? $model->coming_from : '')
 			      ->out(),
 			'resident_phone' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('resident_phone')->caption('Resident phone')
 			      ->class('form-control data-source')
 			      ->controlsource('resident_phone')->controltype('textbox')
-			      ->value($model != NULL ? $model->name : '')
+			      ->value($model != NULL ? $model->resident_phone : '')
 			      ->out(),
 			'from' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('from')->caption('From')
 			      ->class('form-control data-source')
 			      ->controlsource('from')->controltype('textbox')
-			      ->value($model != NULL ? $model->name : '')
+			      ->value($quick != NULL ? $quick->from : '')
 			      ->out(),
 			'from_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
@@ -113,7 +136,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			      ->name('to')->caption('To')
 			      ->class('form-control data-source')
 			      ->controlsource('to')->controltype('textbox')
-			      ->value($model != NULL ? $model->name : '')
+			      ->value($quick != NULL ? $quick->to : '')
 			      ->out(),
 			'to_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
@@ -174,7 +197,33 @@ class BookingController extends \App\Http\Controllers\Controller {
 				->controlsource('Special Requirement')
 				->controltype('editbox')
 				->class('form-control input-sm data-source')
-				->out()
+				->out(),
+			'meet_and_greet' =>
+					\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
+					->caption('Meet and greet +5£')->name('meet_and_greet')->placeholder('Textbox')
+					->value('Meet and greet +5£.')->class('form-control input_label')->enabled(0)
+					->addon([
+					'before' => 
+						\Form::checkbox('meet_and_greet', '1', false,
+							['class' => 'data-source icheck', 'id' => 'meet_and_greet',
+							'data-checkbox' => 'icheckbox_square-green', 'data-control-source' => 'meet_and_greet',
+							'data-control-type' => 'checkbox', 'data-on' => 1, 'data-off' => 0]
+					),
+					'after' => NULL])
+					->out(),
+			'return_50' =>
+					\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
+					->caption('Return 50%')->name('return_50')->placeholder('Return 50%')
+					->value('Return 50%.')->class('form-control input_label')->enabled(0)
+					->addon([
+					'before' => 
+						\Form::checkbox('return_50', '1', false,
+							['class' => 'data-source icheck', 'id' => 'return_50',
+							'data-checkbox' => 'icheckbox_square-green', 'data-control-source' => 'return_50',
+							'data-control-type' => 'checkbox', 'data-on' => 1, 'data-off' => 0]
+					),
+					'after' => NULL])
+					->out()
 
 			];
 	}

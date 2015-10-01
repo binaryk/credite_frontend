@@ -1,7 +1,7 @@
 <div class="blog-sidebar quick-book">
   <h2 class="no-top-space">Quick booking Here</h2>
   <ul class="nav margin-bottom-40">
-  <form name="form" class="booking-form" method="GET" action=" {{route('quick_booking_submit')}} ">
+  <form name="form" class="booking-form" method="GET" action="{{route('quick_booking_submit')}} ">
   
    <div class="row">  
       @include('pages.parts.points',['type' => 'up_']) 

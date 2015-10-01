@@ -1,7 +1,6 @@
 <script src="{{asset('assets/global/plugins/jquery.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/global/plugins/jquery-migrate.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/global/plugins/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>      
-<script src="{{asset('assets/frontend/layout/scripts/back-to-top.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/global/plugins/fancybox/source/jquery.fancybox.pack.js')}}" type="text/javascript"></script><!-- pop up -->
 <script src="{{asset('assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js')}}" type="text/javascript"></script><!-- slider for products -->
 
@@ -26,7 +25,7 @@
         RevosliderInit.initRevoSlider();
         Layout.initTwitter();
         //Layout.initFixHeaderWithPreHeader(); /* Switch On Header Fixing (only if you have pre-header) */
-        //Layout.initNavScrolling(); 
+        // Layout.initNavScrolling(); 
         var token = $('meta[name="csrf_token"]').attr('content');
         $.ajaxSetup({
             headers: {

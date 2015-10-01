@@ -20,10 +20,10 @@
     <div ui-view></div>
     
     <div class="row">
-      <div class="col-md-3">
-        @include('pages.parts.quick-booking')
+      <div class="col-md-6">
+        @include('pages.parts.destinations')
       </div>
-      <div class="col-md-9" id="slider">
+      <div class="col-md-6" id="slider">
         @include('template.parts.body.~page-slider')
       </div>
     </div>
