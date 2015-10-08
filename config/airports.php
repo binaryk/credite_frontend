@@ -11,5 +11,5 @@
 		'9' => 'Norwich - Bristol',
 		'10' => 'Norwich - Cardiff',
 		'11' => 'Norwich - Liverpool',
-		'12' => 'Norwich - Manchester',
+		'12' => 'Norwich - Manchester', 
 	];
