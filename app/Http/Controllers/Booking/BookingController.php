@@ -224,7 +224,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			'return_50' =>
 					\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
 					->caption('Return +50%')->name('return_50')->placeholder('Return +50%')
-					->value('Return 50%.')->class('form-control input_label')->enabled(0)
+					->value('Return +50%.')->class('form-control input_label')->enabled(0)
 					->addon([
 					'before' => 
 						\Form::checkbox('return_50', '1', false,
