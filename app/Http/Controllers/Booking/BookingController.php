@@ -53,8 +53,29 @@ class BookingController extends \App\Http\Controllers\Controller {
             }
         }
 		$data['steps'] = $this->steps($quick);
+
 		return view('booking.form.index')->with(compact('data'));
-	} 
+	}
+    /*action*/
+    public function onlinePay()
+    {
+        dd(\Input::all());
+
+        /*<?php
+          require_once('./config.php');
+          $token  = $_POST['stripeToken'];
+          $customer = \Stripe\Customer::create(array(
+              'email' => 'customer@example.com',
+              'card'  => $token
+          ));
+          $charge = \Stripe\Charge::create(array(
+              'customer' => $customer->id,
+              'amount'   => 5000,
+              'currency' => 'usd'
+          ));
+          echo '<h1>Successfully charged $5!</h1>';
+        ?>*/
+    }
 
 	public function steps($quick = NULL){
 	return $steps = [
