@@ -1,7 +1,7 @@
 <?php
 $router->group(['namespace' => 'Booking'], function () use ($router)
 {
-	get('quick-destination/{type?}/{destination?}', ['as' => 'booking.destination', 'uses' => 'BookingController@destination' ]);
+	get('quick-destination/{type?}/{destination?}/{switched?}', ['as' => 'booking.destination', 'uses' => 'BookingController@destination' ]);
 });
 
 Route::post('commons/get-form', [

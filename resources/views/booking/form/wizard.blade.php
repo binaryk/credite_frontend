@@ -41,9 +41,7 @@
 								</div>
 
 								@foreach($data['steps']['tabs'] as $key => $tab)
-
 									@include('booking.form.tab-'.$tab["view"], ['help' => $tab['help']])
-
 								@endforeach
 							</div>
 						</div>

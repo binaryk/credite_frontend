@@ -1,10 +1,17 @@
 <div class="blog-sidebar quick-book">
   <div class="row">
     <div class="col-md-6">
-      <ul class="tabbable faq-tabbable">
-        <h2>Airports</h2> 
-        @foreach(Config::get('airports') as $key => $airport)
-          <li><a href="{{ route('booking.destination',['destination' => $key, 'type' => 'airports']) }}"> {!! $airport !!} </a></li>  
+        <ul class="tabbable faq-tabbable">
+        <h2>Airports</h2>
+            @foreach(Config::get('airports') as $key => $airport)
+          <li id="link_places_{!!$key!!}" class="tooltip_link" title="<a data-id='link_places_{!! $key !!}' href='#' class='tooltip_switch'> Switch destinations! </a>">
+              <a href="{{ route('booking.destination',['destination' => $key, 'type' => 'airports', 'switched' => '0']) }}" class="link">
+                  <span class="from">{!! $airport['from'] !!}</span>
+                  -
+                  <span class="to">{!! $airport['to'] !!}</span>
+                  <span class="price">{!! $airport['price'] !!}</span>
+              </a>
+          </li>
         @endforeach
        </ul>
       
@@ -13,7 +20,14 @@
       <ul class="tabbable faq-tabbable">
        <h2>Ports</h2>
           @foreach(Config::get('ports') as $key => $port)
-            <li><a href="{{ route('booking.destination',['destination' => $key, 'type' => 'ports']) }}"> {!! $port !!} </a></li>  
+            <li id="link_ports_{!!$key!!}" class="tooltip_link" title="<a data-id='link_ports_{!! $key !!}' href='#' class='tooltip_switch'> Switch destinations! </a>">
+                <a href="{{ route('booking.destination',['destination' => $key, 'type' => 'ports', 'switched' => '0']) }}" class="link">
+                    <span class="from">{!! $port['from'] !!}</span>
+                    -
+                    <span class="to">{!! $port['to'] !!}</span>
+                    <span class="price">{!! $port['price'] !!}</span>
+                </a>
+            </li>
           @endforeach 
       </ul>
     </div>

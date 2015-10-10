@@ -14,34 +14,37 @@
 				{!! $data['steps']['records']['phone'] !!}
 			</div>
 			<div class="col-md-6">
-				{!! $data['steps']['records']['resident_phone'] !!}
+				<div class="col-md-6">
+					{!! $data['steps']['records']['up_date'] !!}
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="hour">Hour</label>
+						<input type="text" name="hour" value="2:30 PM" data-format="hh:mm A" class="form-control clockface_1"/>
+					</div>
+				</div>
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-md-6">
-				{!! $data['steps']['records']['up_date'] !!}
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="hour">Hour</label>
-					<input type="text" name="hour" value="2:30 PM" data-format="hh:mm A" class="form-control clockface_1"/>
-				</div>
+
+		<div class="row images">
+			<div class="col-md-8">
+				{{--<div class="col-md-4">--}}
+					{{--{!! $data['steps']['records']['nr_passegers'] !!}--}}
+				{{--</div>--}}
+				{{--<div class="col-md-4">--}}
+					{{--{!! $data['steps']['records']['nr_luggages'] !!}--}}
+				{{--</div>--}}
+				{{--<div class="col-md-4">--}}
+					{{--{!! $data['steps']['records']['nr_hand_luggages'] !!}--}}
+				{{--</div>--}}
+				<img src=" {!! asset('img/persons.png') !!} " width="70" height="40" alt="">
+				<img src=" {!! asset('img/luggage_small.png') !!} " width="70" height="40" alt="">
+				<img src=" {!! asset('img/luggage_big.png') !!} " width="70" height="40" alt="">
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-8">
-				<div class="col-md-4">
-					{!! $data['steps']['records']['nr_passegers'] !!}
-				</div>
-				<div class="col-md-4">
-					{!! $data['steps']['records']['nr_luggages'] !!}
-				</div>
-				<div class="col-md-4">
-					{!! $data['steps']['records']['nr_hand_luggages'] !!}
-				</div>
-			</div>
-		</div> 
+	<div class="row">
+	</div>
 
 		<div class="row">
 			<div class="col-md-8">

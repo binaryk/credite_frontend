@@ -37,11 +37,21 @@ class BookingController extends \App\Http\Controllers\Controller {
 	public function getBookingForm(){
 	} 
 
-	public function destination($type = NULL, $destination = NULL){
+	public function destination($type = NULL, $destination = NULL, $switched = NULL){
 		$data['caption'] = 'BOOKING DETAILS FORM';
 		$quick = [];
-		$quick['from'] = '';
-		$quick['to'] = \Config::get($type)[$destination];
+        $to    = \Config::get($type)[$destination]['to'];
+        $from  = \Config::get($type)[$destination]['from'];
+
+        if($switched != NULL && $switched == '1'){
+            $quick['to'] = $from;
+            $quick['from'] = $to;
+        }else{
+            if($switched != NULL && $switched == '0'){
+                $quick['to'] = $to;
+                $quick['from'] = $from;
+            }
+        }
 		$data['steps'] = $this->steps($quick);
 		return view('booking.form.index')->with(compact('data'));
 	} 
@@ -119,14 +129,14 @@ class BookingController extends \App\Http\Controllers\Controller {
 			      ->out(),
 			'from' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-			      ->name('from')->caption('From')
+			      ->name('from')->caption('Adress')
 			      ->class('form-control data-source')
 			      ->controlsource('from')->controltype('textbox')
 			      ->value($quick != NULL ? $quick->from : '')
 			      ->out(),
 			'from_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-			      ->name('from_nr')->caption('From door no')
+			      ->name('from_nr')->caption('Post code')
 			      ->class('form-control data-source')
 			      ->controlsource('from_nr')->controltype('textbox')
 			      ->value($model != NULL ? $model->name : '')
@@ -140,7 +150,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			      ->out(),
 			'to_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-			      ->name('to_nr')->caption('To door no')
+			      ->name('to_nr')->caption('Post code')
 			      ->class('form-control data-source')
 			      ->controlsource('to_nr')->controltype('textbox')
 			      ->value($model != NULL ? $model->name : '')
@@ -213,7 +223,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 					->out(),
 			'return_50' =>
 					\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
-					->caption('Return 50%')->name('return_50')->placeholder('Return 50%')
+					->caption('Return 50%')->name('return_50')->placeholder('Return +50%')
 					->value('Return 50%.')->class('form-control input_label')->enabled(0)
 					->addon([
 					'before' => 

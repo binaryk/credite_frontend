@@ -37,6 +37,7 @@
     "jquery.steps": "~1.1.0",
     "select2": "~4.0.0",
     "toastr": "~2.1.2",
+    "tooltipster": "~3.3.0",
     "x-editable": "~1.5.1"
   }
 }

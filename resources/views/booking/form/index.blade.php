@@ -21,7 +21,12 @@
 <link rel="stylesheet" href="{{ asset('assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
 
 <style type="text/css"> 
-
+    .images img{
+        margin-right: 10px;
+    }
+    .images{
+        margin-bottom: 20px;
+    }
 </style>
 @stop
  
