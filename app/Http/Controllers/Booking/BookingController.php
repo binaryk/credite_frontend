@@ -152,26 +152,30 @@ class BookingController extends \App\Http\Controllers\Controller {
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('from')->caption('Adress')
 			      ->class('form-control data-source')
+			      ->readonly('1')
 			      ->controlsource('from')->controltype('textbox')
 			      ->value($quick != NULL ? $quick->from : '')
 			      ->out(),
 			'from_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-			      ->name('from_nr')->caption('Post code')
+			      ->name('from_nr')->caption('Pick up')
+			      ->placeholder('ex. post code (123456)')
 			      ->class('form-control data-source')
 			      ->controlsource('from_nr')->controltype('textbox')
 			      ->value($model != NULL ? $model->name : '')
 			      ->out(),
 			'to' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-			      ->name('to')->caption('To')
+			      ->name('to')->caption('To') 
+			      ->readonly('1')
 			      ->class('form-control data-source')
 			      ->controlsource('to')->controltype('textbox')
 			      ->value($quick != NULL ? $quick->to : '')
 			      ->out(),
 			'to_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-			      ->name('to_nr')->caption('Post code')
+			      ->name('to_nr')->caption('To')
+			      ->placeholder('ex. post code (123456)')
 			      ->class('form-control data-source')
 			      ->controlsource('to_nr')->controltype('textbox')
 			      ->value($model != NULL ? $model->name : '')
@@ -251,6 +255,19 @@ class BookingController extends \App\Http\Controllers\Controller {
 						\Form::checkbox('return_50', '1', false,
 							['class' => 'data-source icheck', 'id' => 'return_50',
 							'data-checkbox' => 'icheckbox_square-green', 'data-control-source' => 'return_50',
+							'data-control-type' => 'checkbox', 'data-on' => 1, 'data-off' => 0]
+					),
+					'after' => NULL])
+					->out(),
+			'pay_cash' =>
+					\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
+					->caption('Pay cash')->name('pay_cash')->placeholder('Pay cash')
+					->value('Pay cash.')->class('form-control input_label')->enabled(0)
+					->addon([
+					'before' => 
+						\Form::checkbox('pay_cash', '1', false,
+							['class' => 'data-source icheck', 'id' => 'pay_cash',
+							'data-checkbox' => 'icheckbox_square-green', 'data-control-source' => 'pay_cash',
 							'data-control-type' => 'checkbox', 'data-on' => 1, 'data-off' => 0]
 					),
 					'after' => NULL])
