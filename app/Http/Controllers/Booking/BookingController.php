@@ -5,13 +5,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\Auth\AuthController;
 
-class BookingController extends \App\Http\Controllers\Controller {
+class BookingController extends PreBookingController {
 
 	protected $request;
 
 	public function __construct(Request $request)
-	{
+	{ 
 		$this->request = $request;
 	}
 
@@ -37,9 +38,19 @@ class BookingController extends \App\Http\Controllers\Controller {
 	public function getBookingForm(){
 	} 
 
+	public function postForm(){
+		$data = Input::get('data');
+    	$user = $this->createUser($data);
+    	if($user){
+    		$data['user_id'] = $user->id;
+    		$this->saveBook($data);
+    	}
+	} 
+
 	public function destination($type = NULL, $destination = NULL, $switched = NULL){
 		$data['caption'] = 'BOOKING DETAILS FORM';
 		$quick = [];
+		
         $to    = \Config::get($type)[$destination]['to'];
         $from  = \Config::get($type)[$destination]['from'];
 
@@ -58,9 +69,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 	}
     /*action*/
     public function onlinePay()
-    {
-        dd(\Input::all());
-
+    { 
         /*<?php
           require_once('./config.php');
           $token  = $_POST['stripeToken'];
@@ -108,6 +117,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			'email' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('email')->caption('Email')
+			      ->ng_model('form.email')
 			      // ->placeholder('Email')
 			      ->class('form-control data-source')
 			      ->controlsource('email')->controltype('textbox')
@@ -116,6 +126,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			'name' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('name')->caption('Name')
+			      ->ng_model('form.name')
 			      ->class('form-control data-source')
 			      ->controlsource('name')->controltype('textbox')
 			      ->value($model != NULL ? $model->name : '')
@@ -123,6 +134,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			'phone' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('phone')->caption('Mobile phone')
+			      ->ng_model('form.phone')
 			      ->class('form-control data-source')
 			      ->controlsource('phone')->controltype('textbox')
 			      ->value($model != NULL ? $model->phone : '')
@@ -130,6 +142,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			'flight_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('flight_nr')->caption('Flight Nr')
+			      ->ng_model('form.flight_nr')
 			      ->class('form-control data-source')
 			      ->controlsource('flight_nr')->controltype('textbox')
 			      ->value($model != NULL ? $model->flight_nr : '')
@@ -137,6 +150,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			'coming_from' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('coming_from')->caption('Coming from')
+			      ->ng_model('form.coming_from')
 			      ->class('form-control data-source')
 			      ->controlsource('coming_from')->controltype('textbox')
 			      ->value($model != NULL ? $model->coming_from : '')
@@ -144,6 +158,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			'resident_phone' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('resident_phone')->caption('Resident phone')
+			      ->ng_model('form.resident_phone')
 			      ->class('form-control data-source')
 			      ->controlsource('resident_phone')->controltype('textbox')
 			      ->value($model != NULL ? $model->resident_phone : '')
@@ -151,6 +166,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			'from' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('from')->caption('Adress')
+			      // ->ng_model('form.from')
 			      ->class('form-control data-source')
 			      ->readonly('1')
 			      ->controlsource('from')->controltype('textbox')
@@ -159,6 +175,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			'from_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('from_nr')->caption('Pick up')
+			      ->ng_model('form.from_nr')
 			      ->placeholder('ex. post code (123456)')
 			      ->class('form-control data-source')
 			      ->controlsource('from_nr')->controltype('textbox')
@@ -167,6 +184,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			'to' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('to')->caption('To') 
+			      // ->ng_model('form.to')
 			      ->readonly('1')
 			      ->class('form-control data-source')
 			      ->controlsource('to')->controltype('textbox')
@@ -175,6 +193,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			'to_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('to_nr')->caption('To')
+			      ->ng_model('form.to_nr')
 			      ->placeholder('ex. post code (123456)')
 			      ->class('form-control data-source')
 			      ->controlsource('to_nr')->controltype('textbox')
@@ -183,6 +202,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			'to_street' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('to_street')->caption('To street	')
+			      ->ng_model('form.to_street')
 			      ->class('form-control data-source')
 			      ->controlsource('to_street')->controltype('textbox')
 			      ->value($model != NULL ? $model->name : '')
@@ -198,6 +218,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 	     	'nr_passegers' =>	
 				\Easy\Form\Combobox::make('~layouts.form.controls.comboboxes.combobox')
 	            ->name('nr_passegers')
+	            ->ng_model('form.nr_passegers')
 	            ->caption('No of passengers')
 	            ->class('form-control data-source input-group form-select selectpicker init-on-update-delete')
 	            ->controlsource( 'nr_passegers')
@@ -208,6 +229,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 	     	'nr_luggages' =>	
 				\Easy\Form\Combobox::make('~layouts.form.controls.comboboxes.combobox')
 	            ->name('nr_luggages')
+	            ->ng_model('form.nr_luggages')
 	            ->caption('No of luggages')
 	            ->class('form-control data-source input-group form-select selectpicker init-on-update-delete')
 	            ->controlsource( 'nr_luggages')
@@ -218,6 +240,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 	     	'nr_hand_luggages' =>	
 				\Easy\Form\Combobox::make('~layouts.form.controls.comboboxes.combobox')
 	            ->name('nr_hand_luggages')
+	            ->ng_model('form.nr_hand_luggages')
 	            ->caption('No of hand luggages')
 	            ->class('form-control data-source input-group form-select selectpicker init-on-update-delete')
 	            ->controlsource( 'nr_hand_luggages')
@@ -228,6 +251,7 @@ class BookingController extends \App\Http\Controllers\Controller {
 			'details' => 
 				\Easy\Form\Editbox::make('~layouts.form.controls.editboxes.editbox')
 				->name('details')
+				->ng_model('form.details')
 				->caption('Special Requirement')
 				->controlsource('Special Requirement')
 				->controltype('editbox')
@@ -235,20 +259,22 @@ class BookingController extends \App\Http\Controllers\Controller {
 				->out(),
 			'meet_and_greet' =>
 					\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
-					->caption('Meet and greet +5£')->name('meet_and_greet')->placeholder('Textbox')
+					->caption('Meet and greet +5£')
+					->name('meet_and_greet')->placeholder('Textbox') 
 					->value('Meet and greet +5£.')->class('form-control input_label')->enabled(0)
 					->addon([
 					'before' => 
 						\Form::checkbox('meet_and_greet', '1', false,
 							['class' => 'data-source icheck', 'id' => 'meet_and_greet',
 							'data-checkbox' => 'icheckbox_square-green', 'data-control-source' => 'meet_and_greet',
-							'data-control-type' => 'checkbox', 'data-on' => 1, 'data-off' => 0]
+							'data-control-type' => 'checkbox', 'data-on' => 1, 'data-off' => 0, 'ng-model' => 'form.meet_and_greet']
 					),
 					'after' => NULL])
 					->out(),
 			'return_50' =>
 					\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
-					->caption('Return +50%')->name('return_50')->placeholder('Return +50%')
+					->caption('Return +50%')
+					->name('return_50')->placeholder('Return +50%')
 					->value('Return +50%.')->class('form-control input_label')->enabled(0)
 					->addon([
 					'before' => 
@@ -261,7 +287,8 @@ class BookingController extends \App\Http\Controllers\Controller {
 					->out(),
 			'pay_cash' =>
 					\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
-					->caption('Pay cash')->name('pay_cash')->placeholder('Pay cash')
+					->caption('Pay cash')
+					->name('pay_cash')->placeholder('Pay cash')
 					->value('Pay cash.')->class('form-control input_label')->enabled(0)
 					->addon([
 					'before' => 

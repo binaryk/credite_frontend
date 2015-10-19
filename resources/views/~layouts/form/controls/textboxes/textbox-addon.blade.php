@@ -6,7 +6,7 @@
 	    @if( $addon['before'])
 	    	<span class="input-group-addon">{!!$addon['before']!!}</span>
 	    @endif
-	    {!! Form::text($name, $value, $attributes) !!}
+	    {!! Form::text($name, $value, $attributes + $angular) !!}
 	    @if( $addon['after'])
 	    	<span class="input-group-addon">{!!$addon['after']!!}</span>
 	    @endif
@@ -14,4 +14,4 @@
 	@if($help)
 	    <p class="help-block">{{$help}}</p>
 	@endif
-</div> 
+</div>

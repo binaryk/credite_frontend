@@ -14,6 +14,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin
     Route::pattern('id', '[0-9]+');
     Route::pattern('id2', '[0-9]+');
 
+	include(app_path() . '/~Libs/routes/administration.php');
+
     # Admin Dashboard
 
 });

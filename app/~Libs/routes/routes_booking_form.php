@@ -20,5 +20,7 @@ Route::get('booking-form', [
 	'uses' => '\App\Http\Controllers\Booking\BookingController@getBookingForm',
 ]);
 
-
-
+Route::post('booking_post_form', [
+	'as' => 'booking_post_form', 
+	'uses' => '\App\Http\Controllers\Booking\BookingController@postForm'
+]);

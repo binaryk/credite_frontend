@@ -32,6 +32,7 @@
  
 
 @section('body-attributes')
+ng-controller = 'BookingCtrl'
 @stop
 
 @section('content')
@@ -59,14 +60,16 @@
   <script src=" {{asset('assets/admin/pages/scripts/form-icheck.js')}} "></script>
   <script src=" {{asset('assets/global/plugins/icheck/icheck.min.js')}} "></script>
   <script src=" {{asset('custom/js/general/BookingForm.js')}} "></script>
+  <script src=" {{asset('custom/js/angular/controllers/BookingCtrl.js')}} "></script>
   <script>
   jQuery(document).ready(function($) {
     FormWizard.init();
     ComponentsPickers.init(); 
     var bf = new BookingForm({});
     bf.init();
-
   });
+  _config['test'] = 'Test!';
+  _config['post_form'] = "{!! route('booking_post_form') !!}" ;
   </script>
 @stop
 

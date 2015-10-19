@@ -14,7 +14,9 @@
 <script src="{{asset('assets/frontend/layout/scripts/layout.js')}}" type="text/javascript"></script>
 
 <script src="{{ asset( 'components/angular/angular.min.js') }}" ></script> 
-<script src="{{ asset( 'components/angular-animate/angular-animate.min.js') }}" ></script> 
+<script src="{{ asset( 'components/angular-animate/angular-animate.min.js') }}" ></script>
+
+<script src="{{ asset( 'custom/js/angular/config.js') }}" ></script> 
 
 
 <script type="text/javascript">
@@ -39,6 +41,8 @@
         $('#flash-overlay-modal').modal();
         $('div.alert').not('.alert-danger').delay(3000).slideUp(300);
     });
+    var _config = {};
+    
 </script>
 @yield('custom-scripts')
 

@@ -87,6 +87,7 @@ class HTML
 	public function out()
 	{
 		$this->beforeOut();
+		$this->withAngular();
 		return \View::make($this->view, $this->data);
 	}
 }

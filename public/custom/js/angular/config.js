@@ -1,9 +1,12 @@
 var app = angular.module('app', []) 
-	.config(function($interpolateProvider) {
+/*	.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('{[');
     $interpolateProvider.endSymbol(']}');
-}) 
+}) */
 ;
+app.run(function($rootScope){
+  $rootScope.config = _config;
+});
 /*
 .config(function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to /state1

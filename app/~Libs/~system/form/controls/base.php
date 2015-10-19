@@ -111,8 +111,25 @@ class Base extends \Easy\HTML\HTML
 		return $result;
 	}
 
+	public function angular()
+    {
+        $result = [];
+        foreach($this->data as $key => $data){
+            if(! is_array($data)){
+                if(strpos($key, 'ng_') !== false){
+                    $result[str_replace('_','-',$key)] = $data;
+                }
+            }
+        }
+        return $result;
+    }
+
 	protected function beforeOut()
 	{
 		$this->with('attributes', $this->attributes());
 	}
+
+	protected function withAngular(){
+        $this->with('angular', $this->angular());
+    }
 }

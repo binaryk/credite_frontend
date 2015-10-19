@@ -30,7 +30,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'username', 'last_visit', 'phone'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -43,4 +43,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	{
 		return $this->hasMany('App\Article');
 	}
+
+    public static function withoutSelf(){
+        return self::where('id','!=', \Auth::user()->id)->get();
+    } 
 }

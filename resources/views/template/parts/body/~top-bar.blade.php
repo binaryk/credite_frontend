@@ -18,6 +18,9 @@
                     <li><a href="{{ url('auth/register') }}">Registration</a></li>
             @else
                     <li><a href="{{ url('auth/login') }}">My page</a></li>
+                    @if(Auth::user()->admin == '1')
+                    <li><a href="{{ route('administration') }}">Administration</a></li>
+                    @endif
                     <li><a href="{{ url('auth/logout') }}">Logout</a></li>
             @endif
                 </ul>

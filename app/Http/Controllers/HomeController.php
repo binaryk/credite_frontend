@@ -13,9 +13,6 @@ class HomeController extends Controller {
 
 	public function index()
 	{
-
-		// 
-
 		$controls = $this->controls('up_');
 		$controls1 = $this->controls('off_');
 		$controls = array_merge($controls, $controls1);

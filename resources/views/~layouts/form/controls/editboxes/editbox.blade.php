@@ -10,7 +10,7 @@
 		{!! $caption !!}
 	</label>
 
-	{!! Form::textarea($name, $value, $attributes) !!}
+	{!! Form::textarea($name, $value, $attributes + $angular) !!}
 
 	@if($help)
 		<p class="help-block">{{$help}}</p>

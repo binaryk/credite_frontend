@@ -20,7 +20,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="hour">Hour</label>
-						<input type="text" name="hour" value="2:30 PM" data-format="hh:mm A" class="form-control clockface_1"/>
+						<input type="text" name="hour" value="2:30 PM" ng-model="form.hour" data-format="hh:mm A" class="form-control clockface_1"/>
 					</div>
 				</div>
 			</div>

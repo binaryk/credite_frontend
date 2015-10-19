@@ -11,7 +11,7 @@
 			{{ $caption }}
 		</label>
     @endif
-    {!! Form::text($name, $value, $attributes) !!}
+    {!! Form::text($name, $value, $attributes + $angular) !!}
     @if($help)
 		<p class="help-block">{{$help}}</p>
 	@endif

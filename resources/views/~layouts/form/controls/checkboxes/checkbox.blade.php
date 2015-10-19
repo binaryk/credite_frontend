@@ -1,6 +1,6 @@
 <div class="checkbox">
 	<label>
-		{{Form::checkbox($name, $value, $checked, $attributes)}} {{$caption}}
+		{{Form::checkbox($name, $value, $checked, $attributes + $angular )}} {{$caption}}
 	</label>
 </div>
 @if($help)

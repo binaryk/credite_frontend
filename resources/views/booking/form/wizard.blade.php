@@ -53,7 +53,7 @@
 									<a href="javascript:;" class="btn blue button-next">
 									Continue <i class="m-icon-swapright m-icon-white"></i>
 									</a>
-									<a href="javascript:;" class="btn green button-submit">
+									<a href="javascript:;" ng-click="submitForm();" class="btn green button-submit">
 									Submit <i class="m-icon-swapright m-icon-white"></i>
 									</a>
 								</div>
