@@ -6,7 +6,7 @@
 	<ul class="dropdown-menu" role="menu">
 		<li class="title"><a href="#"><span><i class="icon-film"></i><b>Profile</b></span></a></li>
 		<li  class="divider"></li>
-		<li> <a href="#">Users page</a></li>
+		<li> <a href="{!! url('/') !!}">Home</a></li>
 	</ul>
 
 </li> 
