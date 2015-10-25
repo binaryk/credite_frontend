@@ -64,7 +64,6 @@ class BookingController extends PreBookingController {
             }
         }
 		$data['steps'] = $this->steps($quick);
-
 		return view('booking.form.index')->with(compact('data'));
 	}
     /*action*/

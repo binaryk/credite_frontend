@@ -11,7 +11,7 @@
   </div>
 </div>
 <div class="portlet-body form">
-  <form role="form" lpformnum="16">
+  <form action="{!! route('boking_submit') !!}" role="form" lpformnum="16" method="POST">
     <div class="form-body">
     <div class="col-md-12">
     	<div class="col-md-8">
@@ -38,6 +38,7 @@
       </div>
     </div> 
     </div>
+    <input type="hidden" value="{!! csrf_token() !!}" name="_token">
 
     <div class="clearfix"></div>
     <div class="form-actions">

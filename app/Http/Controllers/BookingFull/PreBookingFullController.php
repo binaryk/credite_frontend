@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\BookingFull; 
+namespace App\Http\Controllers\BookingFull;
 
 use App\User;
 use App\Models\Order;
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Auth\AuthController;
-class PreBookingController extends \App\Http\Controllers\Controller {
+class PreBookingFullController extends \App\Http\Controllers\Controller {
 
 	protected $request;
 

@@ -21,10 +21,10 @@ class HomeController extends Controller {
 		return [
 	     	 'from' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-			      ->name('address')
+			      ->name('from')
 			      ->caption('From')
 			      ->class('form-control data-source')
-			      ->controlsource('address')->controltype('textbox')
+			      ->controlsource('from')->controltype('textbox')
 			     ->out(),
 	     	 'from_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')

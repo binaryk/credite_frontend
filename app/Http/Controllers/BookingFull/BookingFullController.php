@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Auth\AuthController;
 
-class BookingFullController extends PreBookingController {
+class BookingFullController extends PreBookingFullController {
 
 	protected $request;
 
@@ -47,48 +47,29 @@ class BookingFullController extends PreBookingController {
     	}
 	} 
 
-	public function destination($type = NULL, $destination = NULL, $switched = NULL){
+	public function destination($quick){
 		$data['caption'] = 'BOOKING DETAILS FORM';
-		$quick = [];
-		
-        $to    = \Config::get($type)[$destination]['to'];
-        $from  = \Config::get($type)[$destination]['from'];
-
-        if($switched != NULL && $switched == '1'){
-            $quick['to'] = $from;
-            $quick['from'] = $to;
-        }else{
-            if($switched != NULL && $switched == '0'){
-                $quick['to'] = $to;
-                $quick['from'] = $from;
-            }
-        }
 		$data['steps'] = $this->steps($quick);
+		return $data;
+		
 
-		return view('booking.form.index')->with(compact('data'));
 	}
     /*action*/
     public function onlinePay()
     { 
-        /*<?php
-          require_once('./config.php');
-          $token  = $_POST['stripeToken'];
-          $customer = \Stripe\Customer::create(array(
-              'email' => 'customer@example.com',
-              'card'  => $token
-          ));
-          $charge = \Stripe\Charge::create(array(
-              'customer' => $customer->id,
-              'amount'   => 5000,
-              'currency' => 'usd'
-          ));
-          echo '<h1>Successfully charged $5!</h1>';
-        ?>*/
+         
     }
+
+    public function submitBookingPrev(){
+    	$data = Input::all();
+    	$data = $this->destination($data);
+    	return view('booking.form.index')->with(compact('data'));
+
+    } 
 
 	public function steps($quick = NULL){
 	return $steps = [
-		'records' => $this->controls( (object) $quick),
+		'records' => $this->controls($quick),
 		'tabs' => [
 			[
 				'caption' => 'Details',
@@ -99,11 +80,6 @@ class BookingFullController extends PreBookingController {
 				'caption' => 'Pickup date/time',
 				'help'    => 'Provide pickup date/time',
 				'view'    => '2'
-			],
-			[
-				'caption' => 'Confirm',
-				'help'    => '',
-				'view'    => '3'
 			]
 		]
 
@@ -112,7 +88,6 @@ class BookingFullController extends PreBookingController {
 
 
 	public function controls($quick = NULL, $model = NULL){
-
 		return [
 			'email' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
@@ -167,37 +142,37 @@ class BookingFullController extends PreBookingController {
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('from')->caption('Adress')
 			      // ->ng_model('form.from')
-			      ->class('form-control data-source')
-			      ->readonly('1')
+			      ->class('form-control data-source booking')
+			      ->readonly('0')
 			      ->controlsource('from')->controltype('textbox')
-			      ->value($quick != NULL ? $quick->from : '')
+			      ->value($quick != NULL ? $quick['from'] : '')
 			      ->out(),
 			'from_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('from_nr')->caption('Pick up')
-			      ->ng_model('form.from_nr')
+			      // ->ng_model('form.from_nr')
 			      ->placeholder('postcode: (NR1 to NR7 only), house number,street')
-			      ->class('form-control data-source')
+			      ->class('form-control data-source booking')
 			      ->controlsource('from_nr')->controltype('textbox')
-			      ->value($model != NULL ? $model->name : '')
+			      ->value($quick != NULL ? $quick['from_nr'] : '')
 			      ->out(),
 			'to' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('to')->caption('To') 
 			      // ->ng_model('form.to')
-			      ->readonly('1')
+			      ->readonly('0')
 			      ->class('form-control data-source')
 			      ->controlsource('to')->controltype('textbox')
-			      ->value($quick != NULL ? $quick->to : '')
+			      ->value($quick != NULL ? $quick['to'] : '')
 			      ->out(),
 			'to_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('to_nr')->caption('To')
-			      ->ng_model('form.to_nr')
+			      // ->ng_model('form.to_nr')
 			      ->placeholder('postcode: (NR1 to NR7 only), house number,street')
-			      ->class('form-control data-source')
+			      ->class('form-control data-source booking')
 			      ->controlsource('to_nr')->controltype('textbox')
-			      ->value($model != NULL ? $model->name : '')
+			      ->value($quick != NULL ? $quick['to_nr'] : '')
 			      ->out(),
 			'to_street' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')

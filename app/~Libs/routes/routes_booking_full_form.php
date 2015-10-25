@@ -9,3 +9,8 @@ Route::get('booking-form', [
 	'as'   => 'booking',
 	'uses' => '\App\Http\Controllers\Booking\BookingFullController@getBookingForm',
 ]);
+
+Route::post('booking-form-submit', [
+	'as'   => 'boking_submit',
+	'uses' => '\App\Http\Controllers\BookingFull\BookingFullController@submitBookingPrev',
+]);

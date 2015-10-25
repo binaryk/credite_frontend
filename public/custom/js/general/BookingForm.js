@@ -45,7 +45,6 @@ function BookingForm(parameters){
 		console.log(href_);
 		var switched = href_.split('/')[href_.split('/').length - 1]; 
         document.switched = switched;
-
 		$('.from-nr, .to-nr').hide();
 		if(document.switched == '1' /*adica s-a schimbat ordinea locatiilor*/){
 			$('.to-nr').show();
@@ -53,7 +52,7 @@ function BookingForm(parameters){
 			$('.from-nr').show();
 			$('.pay-card').show();
 		}
-
+        $('.booking').closest('.to-nr').show();
 	}
 
 
