@@ -55,8 +55,6 @@ function BookingForm(parameters){
         $('.booking').closest('.to-nr').show();
 	}
 
-
-
 	this.init = function(){
 		// this.init_handle();
 		// this.init_combobox();
