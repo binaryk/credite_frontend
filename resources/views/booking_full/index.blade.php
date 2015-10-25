@@ -43,7 +43,6 @@
       </div>
       <div class="col-md-6" id="slider">
         @include('template.parts.body.~page-slider')
-        @include('pages.parts.booking')
       </div>
     </div>
 

@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers\Booking;
+<?php namespace App\Http\Controllers\BookingFull;
 
 use Illuminate\Database\Eloquent;
 use Illuminate\Support\Facades\DB;
@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Auth\AuthController;
 
-class BookingController extends PreBookingController {
+class BookingFullController extends PreBookingController {
 
 	protected $request;
 

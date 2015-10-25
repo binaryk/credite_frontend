@@ -13,73 +13,82 @@ class HomeController extends Controller {
 
 	public function index()
 	{
-		$controls = $this->controls('up_');
-		$controls1 = $this->controls('off_');
-		$controls = array_merge($controls, $controls1);
+		$controls = $this->controls();  
 		return view('pages.home')->with(compact('controls'));
-	}
-
-	public function getAirports(){
-		$airports = Airport::all();
-		return \Response::json(['airports' => $airports]);
-	}
+	} 
 
 	public function controls($type = NULL, $model = NULL){
-		$rez = ($type ? $type : '') ;
-
 		return [
-	     	$rez . 'address' =>	
+	     	 'from' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-			      ->name($rez .'address')
-			      ->caption('Adress')
+			      ->name('address')
+			      ->caption('From')
 			      ->class('form-control data-source')
-			      ->controlsource( $rez . 'address')->controltype('textbox')
+			      ->controlsource('address')->controltype('textbox')
 			     ->out(),
-	     	$rez . 'street' =>	
+	     	 'from_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-			      ->name($rez .'route')
-			      ->caption('Street address')
+			      ->name('from_nr')->caption('Pick up')
+			      ->ng_model('form.from_nr')
+			      ->placeholder('postcode: (NR1 to NR7 only), house number,street')
 			      ->class('form-control data-source')
-			      ->controlsource( $rez . 'route')->controltype('textbox')
-			     ->out(), 
-	     	$rez . 'locality' =>	
+			      ->controlsource('from_nr')->controltype('textbox')
+			      ->value($model != NULL ? $model->name : '')
+			      ->out(),
+	     	 'to' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-			      ->name($rez .'locality')
+			      ->name('to')
+			      ->caption('To')
+			      ->class('form-control data-source')
+			      ->controlsource('to')->controltype('textbox')
+			     ->out(),
+			'to_nr' =>	
+				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
+			      ->name('to_nr')->caption('To')
+			      ->ng_model('form.to_nr')
+			      ->placeholder('postcode: (NR1 to NR7 only), house number,street')
+			      ->class('form-control data-source')
+			      ->controlsource('to_nr')->controltype('textbox')
+			      ->value($model != NULL ? $model->name : '')
+			      ->out(), 
+	     	 'locality' =>	
+				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
+			      ->name('locality')
 			      ->caption('City')
 			      ->class('form-control data-source')
-			      ->controlsource( $rez . 'locality')->controltype('textbox')
+			      ->controlsource('locality')->controltype('textbox')
 			     ->out(), 
-	     	$rez . 'country' =>	
+	     	 'country' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-			      ->name($rez .'country')
+			      ->name('country')
 			      ->caption('Country')
 			      ->class('form-control data-source')
-			      ->controlsource( $rez . 'country')->controltype('textbox')
+			      ->controlsource('country')->controltype('textbox')
 			     ->out(),  
-			$rez . 'postal_code' =>	     
+			 'postal_code' =>	     
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
-				->name($rez .'postal_code')
+				->name('postal_code')
 				->caption('Postal code')
 				->class('form-control data-source')->readonly(0)
-				->controlsource( $rez . 'postal_code')->controltype('textbox')
+				->controlsource('postal_code')->controltype('textbox')
 				->addon(['before' => '<i class="fa fa-envelope"></i>', 'after' => NULL])
 				->out(),
-	     	$rez . 'options' =>	
+	     	 'options' =>	
 				\Easy\Form\Combobox::make('~layouts.form.controls.comboboxes.combobox')
-	            ->name($rez .'option')
+	            ->name('option')
 	            ->caption('Pick-up Point:')
 	            ->class('form-control data-source input-group form-select selectpicker init-on-update-delete')
-	            ->controlsource( $rez . 'option')
+	            ->controlsource('option')
 	            ->controltype('combobox') 
 	            ->enabled('false')
 	            ->options(['' => '- Select -'] + Options::toCombobox())
 	            ->out(),
-	     	$rez . 'airport' =>	
+	     	 'airport' =>	
 				\Easy\Form\Combobox::make('~layouts.form.controls.comboboxes.combobox')
-	            ->name($rez .'airport')
+	            ->name('airport')
 	            ->caption('Airport:')
 	            ->class('form-control data-source input-group form-select selectpicker init-on-update-delete')
-	            ->controlsource( $rez . 'airport')
+	            ->controlsource('airport')
 	            ->controltype('combobox') 
 	            ->enabled('false')
 	            ->options(Airport::toCombobox())
