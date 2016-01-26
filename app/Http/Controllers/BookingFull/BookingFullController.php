@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers\BookingFull;
 
+use App\Jobs\SendOfertRequestEmail;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request; 
@@ -60,12 +62,25 @@ class BookingFullController extends PreBookingFullController {
          
     }
 
-    public function submitBookingPrev(){
+    public function getBookingPrev(){
     	$data = Input::all();
     	$data = $this->destination($data);
     	return view('booking.form.index')->with(compact('data'));
 
-    } 
+    }
+
+    public function postBookingPrev(){
+		$up_date_time = Input::get('up_date_time');
+		if(count($up_date_time) > 0){
+			$datetime = new Carbon($up_date_time);
+		}else{
+			$datetime = Carbon::now();
+		}
+		$data = Input::all() + [ 'up_date_time' => $datetime->toDateTimeString(), 'time_string' => $datetime->formatLocalized('%A %d %B %Y'), 'diff' => $datetime->diffForHumans(), ];
+		$job = new SendOfertRequestEmail($data);
+		$this->dispatch($job);
+		return redirect()->route('home')->withFlashSuccess(trans('strings.request'));
+    }
 
 	public function steps($quick = NULL){
 	return $steps = [
@@ -154,7 +169,7 @@ class BookingFullController extends PreBookingFullController {
 			      ->placeholder('postcode: (NR1 to NR7 only), house number,street')
 			      ->class('form-control data-source booking')
 			      ->controlsource('from_nr')->controltype('textbox')
-			      ->value($quick != NULL ? $quick['from_nr'] : '')
+			      ->value('')
 			      ->out(),
 			'to' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
@@ -172,7 +187,7 @@ class BookingFullController extends PreBookingFullController {
 			      ->placeholder('postcode: (NR1 to NR7 only), house number,street')
 			      ->class('form-control data-source booking')
 			      ->controlsource('to_nr')->controltype('textbox')
-			      ->value($quick != NULL ? $quick['to_nr'] : '')
+			      ->value('')
 			      ->out(),
 			'to_street' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
@@ -181,15 +196,15 @@ class BookingFullController extends PreBookingFullController {
 			      ->class('form-control data-source')
 			      ->controlsource('to_street')->controltype('textbox')
 			      ->value($model != NULL ? $model->name : '')
-			      ->out(),  
-			'up_date' =>	     
+			      ->out(),
+			'up_date_time' =>
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
-				->name('up_date')
-				->caption('Pick up date')
-				->class('form-control calendar date-picker data-source')->readonly(0)
-				->controlsource( 'up_date')->controltype('textbox')
-				->addon(['before' => '<i class="fa fa-calendar"></i>', 'after' => NULL])
-				->out(),
+					->name('up_date_time')
+					->caption('Pick up date')
+					->class('form-control calendar date-picker data-source')->readonly(0)
+					->controlsource( 'up_date_time')->controltype('textbox')
+					->addon(['before' => '<i class="fa fa-calendar"></i>', 'after' => NULL])
+					->out(),
 	     	'nr_passegers' =>	
 				\Easy\Form\Combobox::make('~layouts.form.controls.comboboxes.combobox')
 	            ->name('nr_passegers')

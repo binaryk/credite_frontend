@@ -7,7 +7,7 @@ return [
     'from'       => ['address' => 'lupacescueduard@gmail', 'name' => 'Eduard'],
     'encryption' => 'ssl',
     'username'   => "lupacescueduard@gmail.com",
-    'password'   => "Wh95Q0VC2M",
+    'password'   => "Traiesc.Kasper",
     'sendmail'   => '/usr/sbin/sendmail -bs',
     'pretend'    => false,
 ];

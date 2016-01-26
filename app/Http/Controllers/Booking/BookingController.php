@@ -1,9 +1,14 @@
 <?php namespace App\Http\Controllers\Booking;
 
+use App\Jobs\SendOrderEmail;
+use App\Models\Destination;
+use App\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Auth\AuthController;
 
@@ -50,10 +55,9 @@ class BookingController extends PreBookingController {
 	public function destination($type = NULL, $destination = NULL, $switched = NULL){
 		$data['caption'] = 'BOOKING DETAILS FORM';
 		$quick = [];
-		
-        $to    = \Config::get($type)[$destination]['to'];
-        $from  = \Config::get($type)[$destination]['from'];
-
+		$destination  = Destination::find($destination);
+        $to    = $destination['to'];
+        $from  = $destination['from'];
         if($switched != NULL && $switched == '1'){
             $quick['to'] = $from;
             $quick['from'] = $to;
@@ -64,11 +68,60 @@ class BookingController extends PreBookingController {
             }
         }
 		$data['steps'] = $this->steps($quick);
-		return view('booking.form.index')->with(compact('data'));
+		return view('booking.form.index')->with(compact('data', 'destination'));
 	}
-    /*action*/
+
+    public function fromRequest($id_req, $id_res)
+    {
+        $data['caption'] = 'BOOKING DETAILS FORM';
+        $request = Order::find($id_req);
+        $response = \App\Models\Response::find($id_res);
+        $quick = [
+            'from' => $request->from,
+            'to' => $request->to,
+        ];
+        $data['steps'] = $this->steps($quick, $request);
+        $destination = [
+            'price' => $response->price,
+        ];
+        $price = $response->price;
+        return view('booking.form.index')->with(compact('data', 'destination', 'price'));
+    }
+    /*
+     * after payment submit
+     * action*/
     public function onlinePay()
-    { 
+    {
+
+        /*
+         * in:
+         *    "from" => "Stansted"
+              "to" => "Norwich"
+              "from_nr" => ""
+              "to_nr" => ""
+              "email" => "lupacescueduard@yahoo.com"
+              "name" => ""
+              "phone" => "1561654"
+              "up_date" => ""
+              "hour" => ""
+              "details" => ""
+              "token" => "mWn48p7Hz9qXON2kfbT1L5TG7b1Uhcjfh2fmCTMd"
+              "_token" => "mWn48p7Hz9qXON2kfbT1L5TG7b1Uhcjfh2fmCTMd"
+              "stripeToken" => "tok_17WtBpDukBCaTxLedQN7orWH"
+              "stripeTokenType" => "card"
+              "stripeEmail" => "lupacescueduard@yahoo.com"
+         * */
+        $up_date_time = Input::get('up_date_time');
+        if(count($up_date_time) > 0){
+            $datetime = new Carbon($up_date_time);
+        }else{
+            $datetime = Carbon::now();
+        }
+        $data = Input::all() + [ 'up_date_time' => $datetime->toDateTimeString(), 'time_string' => $datetime->formatLocalized('%A %d %B %Y'), 'diff' => $datetime->diffForHumans(), ];
+        $job = new SendOrderEmail($data);//)->onQueue('emails');
+        $this->dispatch($job);
+        return redirect()->route('home')->withFlashSuccess(trans('strings.form_submit_success'));
+
         /*<?php
           require_once('./config.php');
           $token  = $_POST['stripeToken'];
@@ -85,9 +138,9 @@ class BookingController extends PreBookingController {
         ?>*/
     }
 
-	public function steps($quick = NULL){
+	public function steps($quick = NULL, $model = NULL){
 	return $steps = [
-		'records' => $this->controls( (object) $quick),
+		'records' => $this->controls( (object) $quick, $model),
 		'tabs' => [
 			[
 				'caption' => 'Details',
@@ -116,32 +169,31 @@ class BookingController extends PreBookingController {
 			'email' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('email')->caption('Email')
-			      ->ng_model('form.email')
 			      // ->placeholder('Email')
 			      ->class('form-control data-source')
 			      ->controlsource('email')->controltype('textbox')
-			      ->value($model != NULL ? $model->user->email : '')
+			      ->value($model != NULL ? $model->email : '')
+                    ->readonly($model != NULL ? '1' : '0')
 			      ->out(),
 			'name' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('name')->caption('Name')
-			      ->ng_model('form.name')
 			      ->class('form-control data-source')
 			      ->controlsource('name')->controltype('textbox')
 			      ->value($model != NULL ? $model->name : '')
+                    ->readonly($model != NULL ? '1' : '0')
 			      ->out(),
 			'phone' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('phone')->caption('Mobile phone')
-			      ->ng_model('form.phone')
 			      ->class('form-control data-source')
 			      ->controlsource('phone')->controltype('textbox')
 			      ->value($model != NULL ? $model->phone : '')
+                  ->readonly($model != NULL ? '1' : '0')
 			      ->out(),
 			'flight_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('flight_nr')->caption('Flight Nr')
-			      ->ng_model('form.flight_nr')
 			      ->class('form-control data-source')
 			      ->controlsource('flight_nr')->controltype('textbox')
 			      ->value($model != NULL ? $model->flight_nr : '')
@@ -149,7 +201,6 @@ class BookingController extends PreBookingController {
 			'coming_from' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('coming_from')->caption('Coming from')
-			      ->ng_model('form.coming_from')
 			      ->class('form-control data-source')
 			      ->controlsource('coming_from')->controltype('textbox')
 			      ->value($model != NULL ? $model->coming_from : '')
@@ -157,7 +208,6 @@ class BookingController extends PreBookingController {
 			'resident_phone' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('resident_phone')->caption('Resident phone')
-			      ->ng_model('form.resident_phone')
 			      ->class('form-control data-source')
 			      ->controlsource('resident_phone')->controltype('textbox')
 			      ->value($model != NULL ? $model->resident_phone : '')
@@ -165,7 +215,6 @@ class BookingController extends PreBookingController {
 			'from' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('from')->caption('Adress')
-			      // ->ng_model('form.from')
 			      ->class('form-control data-source')
 			      ->readonly('1')
 			      ->controlsource('from')->controltype('textbox')
@@ -174,16 +223,15 @@ class BookingController extends PreBookingController {
 			'from_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('from_nr')->caption('Pick up')
-			      ->ng_model('form.from_nr')
 			      ->placeholder('postcode: (NR1 to NR7 only), house number,street')
 			      ->class('form-control data-source')
 			      ->controlsource('from_nr')->controltype('textbox')
-			      ->value($model != NULL ? $model->name : '')
+			      ->value($model != NULL ? $model->from_nr : '')
+                  ->readonly($model != NULL ? '1' : '0')
 			      ->out(),
 			'to' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-			      ->name('to')->caption('To') 
-			      // ->ng_model('form.to')
+			      ->name('to')->caption('To')
 			      ->readonly('1')
 			      ->class('form-control data-source')
 			      ->controlsource('to')->controltype('textbox')
@@ -192,32 +240,31 @@ class BookingController extends PreBookingController {
 			'to_nr' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('to_nr')->caption('To')
-			      ->ng_model('form.to_nr')
 			      ->placeholder('postcode: (NR1 to NR7 only), house number,street')
 			      ->class('form-control data-source')
 			      ->controlsource('to_nr')->controltype('textbox')
-			      ->value($model != NULL ? $model->name : '')
+			      ->value($model != NULL ? $model->to_nr : '')
 			      ->out(),
 			'to_street' =>	
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('to_street')->caption('To street	')
-			      ->ng_model('form.to_street')
 			      ->class('form-control data-source')
 			      ->controlsource('to_street')->controltype('textbox')
-			      ->value($model != NULL ? $model->name : '')
+			      ->value($model != NULL ? $model->to_street : '')
 			      ->out(),  
-			'up_date' =>	     
+			'up_date_time' =>
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
-				->name('up_date')
+				->name('up_date_time')
 				->caption('Pick up date')
-				->class('form-control calendar date-picker data-source')->readonly(0)
-				->controlsource( 'up_date')->controltype('textbox')
+				->class('form-control calendar date-picker data-source')
+                ->readonly($model != NULL ? '1' : '0')
+                ->value($model != NULL ? $model->up_date_time : '')
+				->controlsource( 'up_date_time')->controltype('textbox')
 				->addon(['before' => '<i class="fa fa-calendar"></i>', 'after' => NULL])
 				->out(),
 	     	'nr_passegers' =>	
 				\Easy\Form\Combobox::make('~layouts.form.controls.comboboxes.combobox')
 	            ->name('nr_passegers')
-	            ->ng_model('form.nr_passegers')
 	            ->caption('No of passengers')
 	            ->class('form-control data-source input-group form-select selectpicker init-on-update-delete')
 	            ->controlsource( 'nr_passegers')
@@ -228,7 +275,6 @@ class BookingController extends PreBookingController {
 	     	'nr_luggages' =>	
 				\Easy\Form\Combobox::make('~layouts.form.controls.comboboxes.combobox')
 	            ->name('nr_luggages')
-	            ->ng_model('form.nr_luggages')
 	            ->caption('No of luggages')
 	            ->class('form-control data-source input-group form-select selectpicker init-on-update-delete')
 	            ->controlsource( 'nr_luggages')
@@ -239,7 +285,6 @@ class BookingController extends PreBookingController {
 	     	'nr_hand_luggages' =>	
 				\Easy\Form\Combobox::make('~layouts.form.controls.comboboxes.combobox')
 	            ->name('nr_hand_luggages')
-	            ->ng_model('form.nr_hand_luggages')
 	            ->caption('No of hand luggages')
 	            ->class('form-control data-source input-group form-select selectpicker init-on-update-delete')
 	            ->controlsource( 'nr_hand_luggages')
@@ -250,23 +295,25 @@ class BookingController extends PreBookingController {
 			'details' => 
 				\Easy\Form\Editbox::make('~layouts.form.controls.editboxes.editbox')
 				->name('details')
-				->ng_model('form.details')
 				->caption('Special Requirement')
 				->controlsource('Special Requirement')
 				->controltype('editbox')
+                ->value($model != NULL ? $model->details : '')
+                    ->readonly($model != NULL ? '1' : '0')
 				->class('form-control input-sm data-source')
 				->out(),
 			'meet_and_greet' =>
 					\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
 					->caption('Meet and greet +5£')
 					->name('meet_and_greet')->placeholder('Textbox') 
-					->value('Meet and greet +5£.')->class('form-control input_label')->enabled(0)
+					->value('Meet and greet +5£.')->class('form-control input_label')
+                        ->enabled(0)
 					->addon([
 					'before' => 
-						\Form::checkbox('meet_and_greet', '1', false,
+						\Form::checkbox('meet_and_greet', '1', $model != NULL ? $model->meet_and_greet : false,
 							['class' => 'data-source icheck', 'id' => 'meet_and_greet',
 							'data-checkbox' => 'icheckbox_square-green', 'data-control-source' => 'meet_and_greet',
-							'data-control-type' => 'checkbox', 'data-on' => 1, 'data-off' => 0, 'ng-model' => 'form.meet_and_greet']
+							'data-control-type' => 'checkbox', 'data-on' => 1, 'data-off' => 0] + ($model != NULL ? ['disabled' => 'disabled'] : [])
 					),
 					'after' => NULL])
 					->out(),
@@ -274,13 +321,14 @@ class BookingController extends PreBookingController {
 					\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox-addon')
 					->caption('Return +50%')
 					->name('return_50')->placeholder('Return +50%')
-					->value('Return +50%.')->class('form-control input_label')->enabled(0)
+					->value('Return +50%.')->class('form-control input_label')
+                        ->enabled(0)
 					->addon([
 					'before' => 
-						\Form::checkbox('return_50', '1', false,
+						\Form::checkbox('return_50', '1', $model != NULL ? $model->return_50 : false,
 							['class' => 'data-source icheck', 'id' => 'return_50',
 							'data-checkbox' => 'icheckbox_square-green', 'data-control-source' => 'return_50',
-							'data-control-type' => 'checkbox', 'data-on' => 1, 'data-off' => 0]
+							'data-control-type' => 'checkbox', 'data-on' => 1, 'data-off' => 0] + ($model != NULL ? ['disabled' => 'disabled'] : [])
 					),
 					'after' => NULL])
 					->out(),

@@ -1,7 +1,7 @@
 <div class="portlet box blue ">
 <div class="portlet-title">
   <div class="caption">
-    Booking	
+    One minute quote request
   </div>
   <div class="tools">
     <a href="" class="collapse" data-original-title="" title="">
@@ -11,30 +11,18 @@
   </div>
 </div>
 <div class="portlet-body form">
-  <form action="{!! route('boking_submit') !!}" role="form" lpformnum="16" method="POST">
+  <form action="{!! route('boking_submit_get') !!}" role="form" lpformnum="16" method="GET">
     <div class="form-body">
     <div class="col-md-12">
-    	<div class="col-md-8">
+    	<div class="col-md-12">
 	      <div class="form-group has-success">
 	        {!! $controls['from'] !!}
 	      </div>
     	</div>
-    	<div class="col-md-4">
-	      <div class="form-group has-success">
-	        {!! $controls['from_nr'] !!}
-	      </div>
-    	</div>
-    </div>
-    <div class="col-md-12">
-      <div class="col-md-8">
+      <div class="col-md-12">
       	<div class="form-group has-success">
      	  {!! $controls['to'] !!}
     	</div>
-      </div>
-      <div class="col-md-4">
-	      <div class="form-group has-success">
-	        {!! $controls['to_nr'] !!}
-	      </div> 
       </div>
     </div> 
     </div>

@@ -7,10 +7,15 @@ $router->group(['namespace' => 'BookingFull'], function () use ($router)
 
 Route::get('booking-form', [
 	'as'   => 'booking',
-	'uses' => '\App\Http\Controllers\Booking\BookingFullController@getBookingForm',
+	'uses' => '\App\Http\Controllers\BookingFull\BookingFullController@getBookingForm',
 ]);
 
-Route::post('booking-form-submit', [
-	'as'   => 'boking_submit',
-	'uses' => '\App\Http\Controllers\BookingFull\BookingFullController@submitBookingPrev',
+Route::get('booking-form-submit/{from}/{to}', [
+	'as'   => 'boking_submit_get',
+	'uses' => '\App\Http\Controllers\BookingFull\BookingFullController@getBookingPrev',
+]);
+
+Route::post('booking-form-submit/{from}/{to}', [
+	'as'   => 'boking_submit_post',
+	'uses' => '\App\Http\Controllers\BookingFull\BookingFullController@postBookingPrev',
 ]);

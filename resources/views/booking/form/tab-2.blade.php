@@ -15,13 +15,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="col-md-6">
-					{!! $data['steps']['records']['up_date'] !!}
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="hour">Hour</label>
-						<input type="text" name="hour" value="2:30 PM" ng-model="form.hour" data-format="hh:mm A" class="form-control clockface_1"/>
-					</div>
+					{!! $data['steps']['records']['up_date_time'] !!}
 				</div>
 			</div>
 		</div>

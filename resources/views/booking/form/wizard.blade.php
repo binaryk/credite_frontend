@@ -10,7 +10,7 @@
 				</div>
 			</div>
 			<div class="portlet-body form">
-				<form action="#" id="submit_form" method="POST">
+				<form action="" id="submit_form" method="POST">
 					<div class="form-wizard">
 						<div class="form-body">
 							<ul class="nav nav-pills nav-justified steps">
@@ -53,9 +53,7 @@
 									<a href="javascript:;" class="btn blue button-next">
 									Continue <i class="m-icon-swapright m-icon-white"></i>
 									</a>
-									<a href="javascript:;" ng-click="submitForm();" class="btn green button-submit">
-									Submit <i class="m-icon-swapright m-icon-white"></i>
-									</a>
+									<button type="submit" class="btn green button-submit">Submit<i class="m-icon-swapright m-icon-white"></i></button>
 								</div>
 							</div>
 						</div>

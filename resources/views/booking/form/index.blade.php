@@ -61,8 +61,11 @@ ng-controller = 'BookingCtrl'
   <script src=" {{asset('assets/global/plugins/icheck/icheck.min.js')}} "></script>
   <script src=" {{asset('custom/js/general/BookingForm.js')}} "></script>
   <script src=" {{asset('custom/js/angular/controllers/BookingCtrl.js')}} "></script>
+  <script src=" {{asset('custom/ts/Stripe.js')}} "></script>
+  <script src="https://checkout.stripe.com/checkout.js"></script>
   <script>
-  jQuery(document).ready(function($) {
+    var stripe;
+    jQuery(document).ready(function($) {
     FormWizard.init();
     ComponentsPickers.init(); 
     var bf = new BookingForm({});
@@ -70,6 +73,7 @@ ng-controller = 'BookingCtrl'
   });
   _config['test'] = 'Test!';
   _config['post_form'] = "{!! route('booking_post_form') !!}" ;
+
   </script>
 @stop
 

@@ -6,7 +6,6 @@ class AirportsTableSeeder extends Seeder {
 
 	public function run()
 	{
-
 		\App\Models\Airport::insert([
 			['id' => '1','name' => 'Heathrow Terminal 1 TW6 1JS'],
 			['id' => '2','name' => 'Heathrow Terminal 2 TW6 1JS'],

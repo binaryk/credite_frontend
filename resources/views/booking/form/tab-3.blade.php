@@ -8,11 +8,7 @@
 		<div class="col-md-6">
 			<div class="form-group">
 			<h6>Pay with card</h6>
-	        <form action="{!! route('booking.pay.online') !!}" method="post">
-	            <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-	                    data-key="{!!  \Config::get('stripe')['publishable_key'] !!}"
-	                    data-amount="5000" data-description="One year's subscription"></script>
-	        </form>
+			<button type="button" id="customButton" class="stripe-button-el btn btn-success" style="visibility: visible;"><span>Pay with Card</span></button>
 			</div>
 		</div>
 
@@ -26,4 +22,15 @@
 			<img src="{{ asset('img/stripe/stripe.png') }}">
 		</div>
 	</div>
+	<input type="hidden" name="booking_price" value="{!! $destination['price'] !!}">
 </div>
+
+@section('custom-scripts')
+	@parent
+	<script>
+        stripe = new App.Payment.Stripe("{!!  \Config::get('stripe')['publishable_key'] !!}", "{!! isset($price) !!}")
+        stripe.init();
+        stripe.handers();
+
+	</script>
+@endsection

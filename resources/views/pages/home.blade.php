@@ -2,28 +2,11 @@
 
 @section('custom-styles')
   <link rel="stylesheet" href="{!! asset('components/tooltipster/css/tooltipster.css') !!}">
+  <link rel="stylesheet" href="{!! asset('custom/scss/main.css') !!}">
 <style type="text/css">
-  div[class*='up_point'],
-  div[class*='off_point']{
-    display: none;
-  }
-    .tooltipster-white {
-        border-radius: 5px;
-        border: 2px solid #F1F1F1;
-        border-radius: 7px;
-        background: #003147;
-        color: #ccc;
+    .comment{
+        background-image: url({!! asset('img/comm.jpg') !!}) !important;
     }
-  .tooltipster-white a {
-      color: #007FBB;
-      font-weight: bold;
-  }
-  .tooltipster-white  .tooltipster-content{
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      line-height: 16px;
-      padding: 8px 10px;
-  }
 </style>
 @stop
 
@@ -34,7 +17,7 @@
 @stop
 
 @section('content')
-
+@include('templateadmin.parts.body.~messages')
     <div ui-view></div>
 
     <div class="row">
@@ -42,8 +25,8 @@
         @include('pages.parts.destinations')
       </div>
       <div class="col-md-6" id="slider">
-        @include('template.parts.body.~page-slider')
         @include('pages.parts.booking')
+        @include('template.parts.body.~page-slider')
       </div>
     </div>
 

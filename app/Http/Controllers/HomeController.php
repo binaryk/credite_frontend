@@ -1,7 +1,9 @@
 <?php namespace App\Http\Controllers;
 
-use App\Models\Airport; 
-use App\Models\Options; 
+use App\Models\Airport;
+use App\Models\Comment;
+use App\Models\Destination;
+use App\Models\Options;
 use Illuminate\Database\Eloquent;
 use Illuminate\Support\Facades\DB;
 
@@ -13,8 +15,11 @@ class HomeController extends Controller {
 
 	public function index()
 	{
-		$controls = $this->controls();  
-		return view('pages.home')->with(compact('controls'));
+		$controls = $this->controls();
+        $airports = Destination::where('type','airport')->get();
+        $ports    = Destination::where('type','port')->get();
+        $comments = Comment::valid();
+		return view('pages.home')->with(compact('controls','airports','ports','comments'));
 	} 
 
 	public function controls($type = NULL, $model = NULL){
@@ -23,6 +28,7 @@ class HomeController extends Controller {
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('from')
 			      ->caption('From')
+				  ->placeholder('Give please accurate address including post code')
 			      ->class('form-control data-source')
 			      ->controlsource('from')->controltype('textbox')
 			     ->out(),
@@ -39,6 +45,7 @@ class HomeController extends Controller {
 				\Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
 			      ->name('to')
 			      ->caption('To')
+				  ->placeholder('Give please accurate address including post code')
 			      ->class('form-control data-source')
 			      ->controlsource('to')->controltype('textbox')
 			     ->out(),

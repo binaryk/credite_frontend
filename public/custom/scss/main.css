@@ -1,0 +1,40 @@
+div[class*='up_point'],
+div[class*='off_point'] {
+  display: none; }
+
+.tooltipster-white {
+  border-radius: 5px;
+  border: 2px solid #F1F1F1;
+  border-radius: 7px;
+  background: #003147;
+  color: #ccc; }
+
+.tooltipster-white a {
+  color: #007FBB;
+  font-weight: bold; }
+
+.tooltipster-white .tooltipster-content {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 8px 10px; }
+
+.page-slider, #slider > .portlet {
+  margin-top: 40px; }
+
+.comment {
+  color: white;
+  font-weight: bold;
+  padding: 30px !important;
+  font-style: italic;
+  background-position: 30% 10%; }
+
+.comment > .text {
+  width: 100%;
+  height: 100%;
+  padding: 30px !important; }
+
+.tp-bannertimer.tp-bottom {
+  display: none; }
+
+/*# sourceMappingURL=main.css.map */

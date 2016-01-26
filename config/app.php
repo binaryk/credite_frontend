@@ -152,6 +152,7 @@ return [
 		Laracasts\Flash\FlashServiceProvider::class,
 		Barryvdh\Debugbar\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        'Cartalyst\Stripe\Laravel\StripeServiceProvider',
 
     ],
 
@@ -210,6 +211,7 @@ return [
 		'Flash'     =>  laracasts\Flash\Flash::class,
 		'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Stripe' => 'Cartalyst\Stripe\Laravel\Facades\Stripe',
 
     ],
 
