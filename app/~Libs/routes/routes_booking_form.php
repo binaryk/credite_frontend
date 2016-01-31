@@ -6,6 +6,7 @@ $router->group(['namespace' => 'Booking'], function () use ($router)
 	post('quick-destination/online-pay', ['as' => 'booking.pay.online', 'uses' => 'BookingController@onlinePay' ]);
 
 	get('request-response-destination/{request}/{response}', ['as' => 'booking.from_request', 'uses' => 'BookingController@fromRequest' ]);
+	post('request-response-destination/{request}/{response}', ['as' => 'booking.from_request.post', 'uses' => 'BookingController@onlinePay' ]);
 });
 
 Route::post('commons/get-form', [

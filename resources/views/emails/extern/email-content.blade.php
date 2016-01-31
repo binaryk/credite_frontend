@@ -2,7 +2,7 @@
 	<tr>
 		<td style="padding:10px">
 			<p>
-				You have a new order <b></b>,<br/>
+				You made this order on site <a href="http://www.norwitchtransfer.uk">www.norwitchtransfer.uk</a> :<br/>
 			</p>
 		</td>
 	</tr>

@@ -40,6 +40,9 @@
                                 Details
                             </th>
                             <th>
+                                PayCash
+                            </th>
+                            <th>
                                 Created at
                             </th>
                         </tr>
@@ -70,6 +73,9 @@
                                 </td>
                                 <td class="success">
                                     {!! $request->details !!}
+                                </td>
+                                <td class="success">
+                                    {!! \Easy\Form\StringHelper::Checked($request->pay_cash) !!}
                                 </td>
                                 <td class="success">
                                     {!! $request->created_at !!}

@@ -26,7 +26,7 @@
 												<table class="twelve columns">
 													<tr>
 														<td class="six sub-columns">
-															 -- Norwitch transfer --
+															 -- Norwitchtransfer.uk --
 														</td>
 														<td class="six sub-columns last" align="right" style="text-align:right; vertical-align:middle;"><span class="template-label"></span></td>
 														<td class="expander"></td>
@@ -76,7 +76,7 @@
 				                      <table class="twelve columns">
 				                        <tbody><tr>
 				                          <td align="left">
-				                            <i style="color:#00F">Acest email este transmis automat de către sistem. Va rugăm să nu răspundeţi.</i>
+				                            <i style="color:#00F">Contact: +44 123 456, email: info@norwitchtransfer.uk</i>
 				                          </td>
 				                          <td class="expander"></td>
 				                        </tr>

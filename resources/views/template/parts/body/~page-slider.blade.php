@@ -10,7 +10,13 @@
                 @foreach($comments as $k => $comment)
                     <li class="comment" data-thumb="{{ asset('assets/frontend/pages/img/revolutionslider/thumbs/thumb2.jpg') }}">
                       <div class="text">
-                          {!! $comment->message !!}
+                          <p>
+                              <h4>{!! $comment->title !!}</h4>
+                              <span>{!! $comment->message !!}</span>
+                          </p>
+                          <p>
+                              <i>{!! $comment->author !!}, {!! $comment->created_at !!}</i>
+                          </p>
                       </div>
                     </li>
                 @endforeach

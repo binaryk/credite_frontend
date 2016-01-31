@@ -46,6 +46,9 @@
                                 Response (done/or no)
                             </th>
                             <th>
+                                PayCash
+                            </th>
+                            <th>
                                 Actions
                             </th>
                         </tr>
@@ -81,7 +84,10 @@
                                     {!! $request->created_at !!}
                                 </td>
                                 <td class="danger validation">
-                                    <a>{!! \Easy\Form\StringHelper::Checked($request->response) !!}</a>
+                                    <a href="{!! route('admin_requests_response',['id' => $request->id,]) !!}">{!! \Easy\Form\StringHelper::Checked($request->response) !!}</a>
+                                </td>
+                                <td class="success">
+                                    {!! \Easy\Form\StringHelper::Checked($request->pay_cash) !!}
                                 </td>
                                 <td class="danger validation">
                                     <a href="{!! route('admin_requests_response',['id' => $request->id,]) !!}" class="danger btn btn-sm">Response</a>

@@ -26,7 +26,7 @@
       </div>
       <div class="col-md-6" id="slider">
         @include('pages.parts.booking')
-        @include('template.parts.body.~page-slider')
+        @include('template.parts.body.~new-page-slider')
       </div>
     </div>
 
@@ -35,6 +35,8 @@
 @section('custom-scripts')
 
   <script src="{{ asset( 'custom/js/general/HomePage.js') }}" ></script>
+  <script src="{{ asset( 'custom/ts/Validation.js') }}" ></script>
+  <script src="{{ asset( 'custom/ts/Request.js') }}" ></script>
   <script src="{{ asset( 'components/tooltipster/js/jquery.tooltipster.min.js') }}" ></script>
 
 
@@ -46,6 +48,7 @@
 
     HomePage.init();
     $(document).ready(function() {
+        (new Request()).init();
         $('.tooltip_link').tooltipster({
             contentAsHTML: true,
             interactive: true,

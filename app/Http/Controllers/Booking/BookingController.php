@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Booking;
 
 use App\Jobs\SendOrderEmail;
+use App\Jobs\SendToClientOrder;
 use App\Models\Destination;
 use App\Models\Order;
 use Carbon\Carbon;
@@ -90,7 +91,7 @@ class BookingController extends PreBookingController {
     /*
      * after payment submit
      * action*/
-    public function onlinePay()
+    public function onlinePay($id_req = null)
     {
 
         /*
@@ -111,6 +112,13 @@ class BookingController extends PreBookingController {
               "stripeTokenType" => "card"
               "stripeEmail" => "lupacescueduard@yahoo.com"
          * */
+        if($id_req){
+            /*from request*/
+            Order::where('id',$id_req)->update([
+                'request' => '0',
+            ]);
+        }
+
         $up_date_time = Input::get('up_date_time');
         if(count($up_date_time) > 0){
             $datetime = new Carbon($up_date_time);
@@ -118,8 +126,10 @@ class BookingController extends PreBookingController {
             $datetime = Carbon::now();
         }
         $data = Input::all() + [ 'up_date_time' => $datetime->toDateTimeString(), 'time_string' => $datetime->formatLocalized('%A %d %B %Y'), 'diff' => $datetime->diffForHumans(), ];
-        $job = new SendOrderEmail($data);//)->onQueue('emails');
+        $job        = new SendOrderEmail($data);//)->onQueue('emails');
+        $job_extern = new SendToClientOrder($data);//)->onQueue('emails');
         $this->dispatch($job);
+        $this->dispatch($job_extern);
         return redirect()->route('home')->withFlashSuccess(trans('strings.form_submit_success'));
 
         /*<?php

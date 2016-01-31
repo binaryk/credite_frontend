@@ -11,7 +11,7 @@
   </div>
 </div>
 <div class="portlet-body form">
-  <form action="{!! route('boking_submit_get') !!}" role="form" lpformnum="16" method="GET">
+  <form action="{!! route('boking_submit_get') !!}" role="form" lpformnum="16" method="GET" id="request_form">
     <div class="form-body">
     <div class="col-md-12">
     	<div class="col-md-12">
@@ -30,7 +30,7 @@
 
     <div class="clearfix"></div>
     <div class="form-actions">
-      <button type="submit" class="btn red">Submit</button>
+      <button type="button" id="quick_submit" class="btn red">Submit</button>
     </div>
   </form>
 </div>

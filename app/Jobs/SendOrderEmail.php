@@ -28,6 +28,9 @@ class SendOrderEmail extends Job implements SelfHandling, ShouldQueue
         if(!array_key_exists('return_50', $data)){
             $data['return_50'] = '0';
         }
+        if(!array_key_exists('pay_cash', $data)){
+            $data['pay_cash'] = '0';
+        }
         $this->formData = $data;
     }
 
@@ -58,7 +61,7 @@ class SendOrderEmail extends Job implements SelfHandling, ShouldQueue
             'details' => $this->formData['details'],
             'meet_and_greet' => @$this->formData['meet_and_greet'],
             'return_50' => @$this->formData['return_50'],
-            'pay_cash' =>  '',
+            'pay_cash' =>  $this->formData['pay_cash'],
             'request' => 0,
         ]);
         $mailler = new Mailer();
