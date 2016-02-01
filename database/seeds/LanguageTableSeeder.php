@@ -6,7 +6,7 @@ class LanguageTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('languages')->delete();
+        DB::table('front_languages')->delete();
 
         $language = new Language();
         $language->name = 'English';
