@@ -28,7 +28,8 @@ class CommentController extends Controller
             'author' => $data['name'],
             'email' => $data['email'],
             'message' => $data['message'],
-            'title' => $data['title']
+            'title' => $data['title'],
+            'valid' => '1',
         ]);
         return view('comments.alert')->with(['message' => trans('strings.comment')])->render();
     }
