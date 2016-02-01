@@ -27,4 +27,9 @@ include(app_path() . '/~Libs/routes/routes_booking_form.php');
 include(app_path() . '/~Libs/routes/routes_booking_full_form.php'); 
 include(app_path() . '/~Libs/routes/static.php');
 
+$router->group(['middleware' => 'auth', 'namespace' => 'Credite'], function () use ($router)
+{
+    include(app_path() . '/~Libs/routes/credite/identificarea_nevoii.php');
+});
+
 // un mesaj frumos

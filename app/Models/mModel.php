@@ -6,14 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Destination extends Model
+class mModel extends Model
 {
 
-    use SoftDeletes;
-    protected $table = 'destinations';
-    protected $dates = ['deleted_at'];
+    public function rules()
+    {
 
-
-
+    }
 
 }

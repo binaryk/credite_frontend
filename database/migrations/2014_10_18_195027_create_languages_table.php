@@ -11,7 +11,7 @@ class CreateLanguagesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create( 'languages', function(Blueprint $table){
+		Schema::create( 'front_languages', function(Blueprint $table){
 		    $table->engine = 'InnoDB';
 			$table->increments('id')->unsigned();
 			$table->integer('position')->nullable();
@@ -35,7 +35,7 @@ class CreateLanguagesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('languages');
+		Schema::drop('front_languages');
 	}
 
 }

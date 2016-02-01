@@ -1,6 +1,6 @@
 @if(count($comments) > 0)
 <div class="col-md-12 testimonials-v1">
-    <h2>Clients Testimonials</h2>
+    <h2>Ce spun clientii despre noi ?</h2>
     <div id="myCarousel1" class="carousel slide">
         <!-- Carousel items -->
         <div class="carousel-inner">

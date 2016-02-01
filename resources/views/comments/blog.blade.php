@@ -2,7 +2,8 @@
     <div class="container">
         <div class="row margin-bottom-40">
             <div class="col-md-12 col-sm-12">
-                <h1>Reviews Page</h1>
+                <h3>Pagina de feedback</h3>
+                <br>
                 <div class="content-page">
                     <div class="row">
                         <div class="col-md-9 col-sm-9 blog-posts">
@@ -23,14 +24,13 @@
                                         <p> {!! $comment->message !!} </p>
                                     </div>
                                 </div>
+                                <hr class="blog-post-sep">
                             @endforeach
 
 
 
-                            <hr class="blog-post-sep">
                             @include('comments.form')
                         </div>
-                        @include('comments.right')
                     </div>
                 </div>
             </div>

@@ -4,7 +4,10 @@
     <div class="row">
       <!-- BEGIN COPYRIGHT -->
       <div class="col-md-6 col-sm-6 padding-top-10">
-        2015 © norwitchtransfer.uk <a href="{!! route('terms_conditions') !!}">Privacy Policy</a> | <a href="{!! route('terms_conditions') !!}">Terms of Service</a>
+        2015 © creditfin.ro <a href="{!! route('terms_conditions') !!}">
+          Politica de confidentialitate</a> | <a href="{!! route('terms_conditions') !!}">
+          Termeni si conditii
+        </a>
       </div>
       <!-- END COPYRIGHT -->
       <!-- BEGIN PAYMENTS -->

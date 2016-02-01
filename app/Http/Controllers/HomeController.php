@@ -15,11 +15,11 @@ class HomeController extends Controller {
 
 	public function index()
 	{
-		$controls = $this->controls();
-        $airports = Destination::where('type','airport')->get();
-        $ports    = Destination::where('type','port')->get();
+//		$controls = $this->controls();
+//        $airports = Destination::where('type','airport')->get();
+//        $ports    = Destination::where('type','port')->get();
         $comments = Comment::valid();
-		return view('pages.home')->with(compact('controls','airports','ports','comments'));
+		return view('pages.home')->with(compact('comments'));
 	} 
 
 	public function controls($type = NULL, $model = NULL){

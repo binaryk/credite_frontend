@@ -2,7 +2,7 @@
 <div class="header">
   <div class="container">
     <a class="site-logo" href="{{route('home')}}">
-      <img width="500" src="{{ asset('img/logo.png') }}" alt="norwichtransfer.uk"></a>
+      <img width="500" src="{{ asset('img/logo.png') }}" alt="creditfin.ro"></a>
 
     <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
     @include('template.parts.body.~menu')

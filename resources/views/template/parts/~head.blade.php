@@ -1,11 +1,11 @@
 <head>
   <meta charset="utf-8">
-  <title>@section('title') NorwitchTransfer @show</title>
+  <title>@section('title') Credite @show</title>
 
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <meta content="" name="NorwitchTransfer">
+  <meta content="" name="Credite">
   <meta content="" name="Binaryk">
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="csrf_token" content="{!! csrf_token() !!}"/>
@@ -17,7 +17,7 @@
   <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
   <meta property="og:url" content="-CUSTOMER VALUE-">
 
-  <link rel="shortcut icon" href="{!! asset('assets/site/ico/favicon.png') !!}">
+  <link rel="shortcut icon" href="{!! asset('favicon.ico') !!}">
 
   <!-- Fonts START -->
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="{{ asset('assets/frontend/layout/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/frontend/pages/css/style-revolution-slider.css')}}"><!-- metronic revo slide') }}r styles -->
   <link rel="stylesheet" href="{{ asset('assets/frontend/layout/css/style-responsive.css') }}">
-  <link rel="stylesheet" id="style-color" href="{{ asset('assets/frontend/layout/css/themes/red.css') }}">  
+  <link rel="stylesheet" id="style-color" href="{{ asset('assets/frontend/layout/css/themes/green.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/frontend/layout/css/custom.css') }}">
   <link rel="stylesheet" href="{{ asset('custom/css/app/app.css') }}">
   <link rel="stylesheet" href="{{ asset('custom/css/app/angular-animate.css') }}">

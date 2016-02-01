@@ -11,14 +11,14 @@ class Reviews{
             "name",
             {
                 rule: 'require',
-                message: 'The "Name" field is required'
+                message: 'Câmpul "Nume" este obligatoriu (va aparea la comentariu)'
             }
         )
         validate.addRule(
             "title",
             {
                 rule: 'require',
-                message: 'The "Title" field is required'
+                message: 'Câmpul "Titlu" este obligatoriu'
             }
         )
         validate.addRules(
@@ -26,11 +26,11 @@ class Reviews{
             [
                 {
                     rule: 'require',
-                    message: 'The "Email" field is required'
+                    message: 'Câmpul "Email" este obligatoriu'
                 },
                 {
                     rule: 'email',
-                    message: 'The "Email" field is not valid'
+                    message: 'Câmpul "Email" nu pare să fie valid'
                 }
             ]
         )
@@ -38,7 +38,7 @@ class Reviews{
             "message",
             {
                 rule: 'require',
-                message: 'The "Message" field is required'
+                message: 'Câmpul "Mesaj" este obligatoriu (spune-ne ce gandești despre noi)'
             }
         )
 

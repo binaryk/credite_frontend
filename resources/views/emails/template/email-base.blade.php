@@ -26,7 +26,7 @@
 												<table class="twelve columns">
 													<tr>
 														<td class="six sub-columns">
-															 -- Norwitchtransfer.uk --
+															 -- CreditClienti.ro --
 														</td>
 														<td class="six sub-columns last" align="right" style="text-align:right; vertical-align:middle;"><span class="template-label"></span></td>
 														<td class="expander"></td>

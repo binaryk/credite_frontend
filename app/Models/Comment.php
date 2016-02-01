@@ -10,7 +10,7 @@ class Comment extends Model
 {
 
     use SoftDeletes;
-    protected $table = 'comments';
+    protected $table = 'front_comments';
     protected $dates = ['deleted_at'];
     protected $guarded = [];
 

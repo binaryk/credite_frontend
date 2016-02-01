@@ -40,21 +40,6 @@ function BookingForm(parameters){
 		});
 	}
 
-	this.init_controls = function(){
-		var href_     = location.href;
-		console.log(href_);
-		var switched = href_.split('/')[href_.split('/').length - 1]; 
-        document.switched = switched;
-		$('.from-nr, .to-nr').hide();
-		if(document.switched == '1' /*adica s-a schimbat ordinea locatiilor*/){
-			$('.to-nr').show();
-		}else{/*adica nu s-a schimbat directia*/
-			$('.from-nr').show();
-			$('.pay-card').show();
-		}
-        $('.booking').closest('.to-nr').show();
-	}
-
 	this.init = function(){
 		// this.init_handle();
 		// this.init_combobox();

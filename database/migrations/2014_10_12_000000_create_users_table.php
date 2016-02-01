@@ -16,13 +16,14 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
-            $table->string('name');
-            $table->string('username')->unique(); // used for slug.
+            $table->string('fname');
+            $table->string('lname');
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->string('confirmation_code');
             $table->boolean('confirmed')->default(false);
             $table->boolean('admin')->default(false);
+            $table->tinyInteger('vechime_client');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
