@@ -1,0 +1,1 @@
+{"version":3,"sources":["tsf.js"],"names":[],"mappings":";;AAAA,IAAI,KAAK,SAAL,EAAK,CAAU,CAAV,EAAa,CAAb,EAAgB;AACrB,QAAI,MAAM,KAAK,CAAL,EAAQ;AAAE,YAAI,IAAJ,CAAF;KAAlB;AACA,WAAO,EAAP,CAFqB;CAAhB","file":"tsf-compiled.js","sourcesContent":["var fn = function (a, b) {\r\n    if (b === void 0) { b = 'xx'; }\r\n    return 10;\r\n};\r\n//# sourceMappingURL=tsf.js.map"]}

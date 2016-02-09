@@ -30,10 +30,10 @@ class IdentificareaNevoiiController extends Controller
         $rules = (new Nevoie)->rules();
         $messages = (new Nevoie)->messages();
         $this->validate($request, $rules, $messages);
-        $inserted = Nevoie::create($request->all() );
+        $inserted = Nevoie::create($request->all() + [ 'user_id' => Auth()->user()->id ] );
         $job        = new IdentificareNevoieMailAdmin($inserted);
         $this->dispatch($job);
-        return redirect()->back();
+        return redirect()->route('home')->withFlashSuccess('Completare cu succes, veti primi in curand o oferta.');
     }
 
 
@@ -71,7 +71,7 @@ class IdentificareaNevoiiController extends Controller
                     // ->placeholder('Email')
                     ->class('form-control data-source')
                     ->controlsource('email')->controltype('textbox')
-                    ->value($model != NULL ? $model->email : '')
+                    ->value(Auth()->user()->email)
                     ->readonly($model != NULL ? '1' : '0')
                     ->out(),
             'name' =>
@@ -79,7 +79,7 @@ class IdentificareaNevoiiController extends Controller
                     ->name('name')->caption('Nume')
                     ->class('form-control data-source')
                     ->controlsource('name')->controltype('textbox')
-                    ->value($model != NULL ? $model->name : '')
+                    ->value(Auth()->user()->fname . ' '. Auth()->user()->lname)
                     ->readonly($model != NULL ? '1' : '0')
                     ->out(),
             'phone' =>

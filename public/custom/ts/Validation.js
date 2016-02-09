@@ -1,10 +1,13 @@
+/// <reference path="binaryk/helpers/Ajax.ts" />
 var App;
 (function (App) {
     var Forms;
     (function (Forms) {
         var Validate = (function () {
-            function Validate() {
+            function Validate(defaultAjax) {
                 var _this = this;
+                if (defaultAjax === void 0) { defaultAjax = false; }
+                this.defaultAjax = defaultAjax;
                 this.listen = function (field) {
                     var OK = true, rules = [];
                     _this.fields.forEach(function (e, i) {
@@ -111,6 +114,11 @@ var App;
                         $('[name=' + e.name).val('');
                     });
                     return true;
+                };
+                this.ajaxSubmit = function (url) {
+                    var done = false, ajax = new App.Forms.Ajax(url, _this.getJsonData(), '', 'post');
+                    ajax.call();
+                    return done;
                 };
                 this.fields = [];
                 this.validator = new Validator();

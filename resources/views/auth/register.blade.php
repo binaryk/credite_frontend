@@ -20,7 +20,7 @@
 
                         @include('errors.list')
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{ URL::to('/auth/register') }}">
+                        <form class="form-horizontal" id="register" role="form" method="POST" action="{{ URL::to('/auth/register') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="form-group">
@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Password</label>
+                                <label class="col-md-4 control-label">{{{ trans('site/user.password') }}}</label>
 
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" name="password">
@@ -48,7 +48,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Confirm Password</label>
+                                <label class="col-md-4 control-label">{{{ trans('site/user.password_confirmation') }}}</label>
 
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" name="password_confirmation">
@@ -57,8 +57,8 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Register
+                                    <button type="submit" class="btn btn-primary" id="submit">
+                                        {{{ trans('site/user.register') }}}
                                     </button>
                                 </div>
                             </div>
@@ -68,4 +68,8 @@
             {{--</div>--}}
         </div>
     </div>
+@endsection
+@section('custom-scripts')
+    @parent
+    <script src="{!! asset('custom/ts/register/RegisterForm.js') !!}"></script>
 @endsection

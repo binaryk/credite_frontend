@@ -1,12 +1,9 @@
-<script src="{{asset('assets/global/plugins/jquery.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/global/plugins/jquery-migrate.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/global/plugins/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>      
+<script src="{{asset('assets/global/jq_jq-migrate_boots.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/global/plugins/fancybox/source/jquery.fancybox.pack.js')}}" type="text/javascript"></script><!-- pop up -->
 <script src="{{asset('assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js')}}" type="text/javascript"></script><!-- slider for products -->
-
-<!-- BEGIN RevolutionSlider -->  
-<script src="{{asset('assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js')}}" type="text/javascript"></script> 
-<script src="{{asset('assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js')}}" type="text/javascript"></script> 
+<!-- BEGIN RevolutionSlider -->
+<script src="{{asset('assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/frontend/pages/scripts/revo-slider-init.js')}}" type="text/javascript"></script>
 <!-- END RevolutionSlider -->
 
@@ -17,6 +14,9 @@
 <script src="{{ asset( 'components/angular-animate/angular-animate.min.js') }}" ></script>
 
 <script src="{{ asset( 'custom/js/angular/config.js') }}" ></script> 
+<script src="{{ asset( 'dist/main.js') }}" ></script>
+<script src="{{ asset( 'custom/ts/Validation.js') }}" ></script>
+
 
 
 <script type="text/javascript">

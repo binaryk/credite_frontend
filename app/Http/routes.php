@@ -32,4 +32,10 @@ $router->group(['middleware' => 'auth', 'namespace' => 'Credite'], function () u
     include(app_path() . '/~Libs/routes/credite/identificarea_nevoii.php');
 });
 
+$router->group(['middleware' => 'auth', 'namespace' => 'Client'], function () use ($router)
+{
+    include(app_path() . '/~Libs/routes/credite/client_profile.php');
+    include(app_path() . '/~Libs/routes/credite/client_solicitari.php');
+});
+
 // un mesaj frumos

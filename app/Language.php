@@ -10,7 +10,7 @@ class Language extends Model
 {
 
     use SoftDeletes;
-
+	protected $table = 'front_languages';
     protected $dates = ['deleted_at'];
 
 	/**

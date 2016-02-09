@@ -1,5 +1,5 @@
+/// <reference path="binaryk/helpers/Ajax.ts" />
 declare var $;
-
 module App.Forms {
 
     export interface Rule{
@@ -29,9 +29,10 @@ module App.Forms {
          ]*/
         validator : Validator;
 
-        constructor(){
+        constructor(public defaultAjax = false){
             this.fields = [];
             this.validator = new Validator();
+
         }
 
         listen = (field):boolean => {
@@ -175,7 +176,12 @@ module App.Forms {
             return true;
         }
 
-
+        ajaxSubmit = (url : string): boolean => {
+            var done = false,
+                ajax = new App.Forms.Ajax(url, this.getJsonData(),'', 'post');
+            ajax.call();
+            return done;
+        }
 
     }
 

@@ -4,9 +4,9 @@
 	<span class="username username-hide-on-mobile"> {{ Auth::user()->name }} </span>
 	<i class="fa fa-angle-down"></i></a>
 	<ul class="dropdown-menu" role="menu">
-		<li class="title"><a href="#"><span><i class="icon-film"></i><b>Profile</b></span></a></li>
+		<li class="title"><a href="#"><span><i class="icon-film"></i><b>Profil</b></span></a></li>
 		<li  class="divider"></li>
-		<li> <a href="{!! url('/') !!}">Home</a></li>
+		<li> <a href="{!! url('/') !!}">Acasa</a></li>
 	</ul>
 
 </li> 

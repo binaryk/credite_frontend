@@ -13,7 +13,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 {
 
     use SoftDeletes;
-
     protected $dates = ['deleted_at'];
 
     use Authenticatable, CanResetPassword;
@@ -23,14 +22,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'front_users';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'username', 'last_visit', 'phone'];
+    protected $fillable = ['fname', 'lname', 'email', 'password', 'username', 'last_visit', 'phone'];
 
     /**
      * The attributes excluded from the model's JSON form.
