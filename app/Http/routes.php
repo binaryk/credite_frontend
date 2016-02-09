@@ -36,6 +36,7 @@ $router->group(['middleware' => 'auth', 'namespace' => 'Client'], function () us
 {
     include(app_path() . '/~Libs/routes/credite/client_profile.php');
     include(app_path() . '/~Libs/routes/credite/client_solicitari.php');
+    include(app_path() . '/~Libs/routes/credite/client_fisa.php');
 });
 
 // un mesaj frumos

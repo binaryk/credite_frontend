@@ -1,4 +1,4 @@
-<div class="form-group{{$feedback ? ' has-' . $feedback : ''}}">
+<div class="form-group{!! $feedback ? ' has-' . $feedback : ''!!}">
 	@if( ! empty($caption) )
 		<label class="control-label" for="{{$name}}">
 			@if($feedback == Easy\Form\Base::FEEDBACK_SUCCESS)
@@ -8,7 +8,7 @@
 			@elseif($feedback == Easy\Form\Base::FEEDBACK_ERROR)
 				<i class="fa fa-times-circle-o"></i>
 			@endif
-			{{ $caption }}
+			{!! $caption !!}
 		</label>
     @endif
     {!! Form::text($name, $value, $attributes + $angular) !!}

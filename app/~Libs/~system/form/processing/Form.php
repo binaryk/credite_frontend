@@ -130,6 +130,11 @@ class Form
 		return $this;
 	}
 
+	public function getControls()
+	{
+		return $this->controls;
+	}
+
 	public function showForm()
 	{
 		return \View::make($this->view)->with(['controls' => $this->controls] + $this->other_info)->render();

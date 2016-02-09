@@ -9,7 +9,7 @@
         </a>
     </div>
     <div class="col-md-3 col-sm-3 front-step-col">
-        <a href="#">
+        <a href="{!! route('client.fisa.index') !!}">
             <div class="front-step front-step2">
                 <h2>Fișa client</h2>
                 <p>Pentru a vă putea procesa situația, avem nevoie de datele dvs de client.</p>
